@@ -4,7 +4,7 @@
   <section class="content">
     
     <div class="clearfix"></div>
-    <form method="POST" action="">
+    <form method="POST" action="{{route('system_admin.member.update',['id'=>$member->id])}}">
        @method('PUT')
       {{ csrf_field() }}
     
@@ -110,14 +110,13 @@
   </section>
 @stop
 @section('addjs')
-  <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
   <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
   <script type="text/javascript">
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
       checkboxClass: 'icheckbox_minimal-blue',
       radioClass   : 'iradio_minimal-blue'
     })
-
+    $('#lfm').filemanager('image');
     @if(session('status_update'))
       swal(
         'Thành công!',

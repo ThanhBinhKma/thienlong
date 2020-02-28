@@ -58,6 +58,16 @@ class MemberController extends Controller
 
     public function update(Request $request)
     {
-      dd($request->all());
+      $member = Member::find($request->id);
+      if($member){
+        $data = [
+          'name_member' => $request->name_member,
+          'position' => $request->position,
+          'avatar' => $request->thumbnail,
+          'status' => $request->status,
+        ];
+        $member->update($data);
+        return redirect()->back()->with([ 'status_update' => 'Cập nhật bài đăng thành công!']);
+      }
     }
 }

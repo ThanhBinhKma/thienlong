@@ -71,4 +71,5 @@ Route::group(['prefix' => 'system-admin', 'namespace' => 'Admin' , 'middleware' 
   Route::get('create/member','MemberController@create')->name('system_admin.member.create');
   Route::post('create/member','MemberController@store')->name('system_admin.member.store');
   Route::get('edit/member/{id}','MemberController@edit')->name('system_admin.member.edit');
+  Route::put('edit/member/{id}','MemberController@update')->name('system_admin.member.update');
 });
