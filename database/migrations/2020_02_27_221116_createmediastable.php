@@ -17,6 +17,7 @@ class Createmediastable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->date('date');
+            $table->string('avatar');
             $table->integer('status');
             $table->timestamps();
         });

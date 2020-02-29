@@ -80,7 +80,7 @@
       @else
         <li>
       @endif
-        <a href="{{route('system_admin.list_post.index')}}">
+        <a href="{{route('system_admin.media.index')}}">
           <i class="fa fa-database" aria-hidden="true"></i> <span>Truyền thông</span>
         </a>
       </li>
