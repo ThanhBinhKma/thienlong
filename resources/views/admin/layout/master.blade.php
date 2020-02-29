@@ -58,6 +58,7 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
+<script type="text/javascript" src="common/js/jquery-dateformat.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->

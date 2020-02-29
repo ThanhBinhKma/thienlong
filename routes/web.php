@@ -72,4 +72,28 @@ Route::group(['prefix' => 'system-admin', 'namespace' => 'Admin' , 'middleware' 
   Route::post('create/member','MemberController@store')->name('system_admin.member.store');
   Route::get('edit/member/{id}','MemberController@edit')->name('system_admin.member.edit');
   Route::put('edit/member/{id}','MemberController@update')->name('system_admin.member.update');
+  Route::delete('member/destroy','MemberController@destroy')->name('system_admin.member.destroy');
+  Route::delete('member/destroyAll','MemberController@destroyAll')->name('system_admin.member.destroyAll');
+  Route::post('member/restory','MemberController@restore')->name('system_admin.member.restore');
+
+  //Event
+  Route::get('event','EventController@index')->name('system_admin.event.index');
+  Route::get('create/event','EventController@create')->name('system_admin.event.create');
+  Route::post('create/event','EventController@store')->name('system_admin.event.store');
+  Route::get('edit/event/{id}','EventController@edit')->name('system_admin.event.edit');
+  Route::put('edit/event/{id}','EventController@update')->name('system_admin.event.update');
+  Route::delete('event/destroy','EventController@destroy')->name('system_admin.event.destroy');
+  Route::delete('event/destroyAll','EventController@destroyAll')->name('system_admin.event.destroyAll');
+  Route::post('event/restory','EventController@restore')->name('system_admin.event.restore');
+
+  //Event
+  Route::get('media','MediaController@index')->name('system_admin.media.index');
+  Route::get('create/media','MediaController@create')->name('system_admin.media.create');
+  Route::post('create/media','MediaController@store')->name('system_admin.media.store');
+  Route::get('edit/media/{id}','MediaController@edit')->name('system_admin.media.edit');
+  Route::put('edit/media/{id}','MediaController@update')->name('system_admin.media.update');
+  Route::delete('media/destroy','MediaController@destroy')->name('system_admin.media.destroy');
+  Route::delete('media/destroyAll','MediaController@destroyAll')->name('system_admin.media.destroyAll');
+  Route::post('media/restory','MediaController@restore')->name('system_admin.media.restore');
+
 });

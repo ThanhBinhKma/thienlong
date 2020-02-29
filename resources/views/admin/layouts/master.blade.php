@@ -36,6 +36,7 @@
   {{-- <link rel="stylesheet" href="css/sweetalert.css"> --}}
   <link rel="stylesheet" href="css/sweetalert2.min.css">
   <link rel="stylesheet" href="vendor/select2/select2.min.css">
+  <link rel="stylesheet" href="css/style.css">
   @yield('addcss')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

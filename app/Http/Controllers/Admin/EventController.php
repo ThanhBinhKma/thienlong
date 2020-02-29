@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Member;
+use App\Models\Event;
 
-class MemberController extends Controller
+class EventController extends Controller
 {
-	const TAKE =15;
+   const TAKE =15;
   	const ORDERBY = 'desc'; 
     public function index(Request $request)
     {
       $status =  $request->status;
 
       try {
-        $conditions = Member::select('members.id','members.name','members.position','members.avatar','members.status','members.created_at');
+        $conditions = Event::select('events.id','events.title','events.position','members.avatar','members.status','members.created_at');
         if(isset($status)){
           $conditions = $conditions->where('members.status', '=', $status);
         }
