@@ -4,7 +4,7 @@
     <section class="content">
 
         <div class="clearfix"></div>
-        <form method="POST" action="{{route('system_admin.member.update',['id'=>$member->id])}}">
+        <form method="POST" action="{{route('system_admin.media.update',['id'=>$medias->id])}}">
             @method('PUT')
             {{ csrf_field() }}
 
@@ -39,7 +39,7 @@
 
                                 @if(count($sub_medias) > 0)
                                     @foreach($sub_medias as $key => $sub_media)
-                                        @if($key == 1)
+                                        @if($key == 0 && count($sub_medias) == 1)
                                             <div class="form-group">
 
                                                 <label for="" class="control-label required">Các bài viết đi
@@ -55,7 +55,19 @@
                                                     id="button_add_{{$key}}">
                                                 +
                                             </button>
-                                        @else
+                                        @elseif($key == 0 && count($sub_medias) == 1)
+                                            <div class="form-group">
+
+                                                <label for="" class="control-label required">Các bài viết đi
+                                                    kèm({{$key}}) </label>
+                                                <input type="text" name="subtitle[]" class="form-control">
+                                                <br>
+                                                <label for="" class="control-label required">Link bài viết</label>
+                                                <input type="text" name="link[]" class="form-control"
+                                                       placeholder="Nhập tên trang">
+
+                                            </div>
+                                        @elseif($key >0)
                                             <div class="form-group">
 
                                                 <label for="" class="control-label required">Các bài viết đi
@@ -104,8 +116,8 @@
                         <div class="widget-body">
                             <div class="ui-select-wrapper">
                                 <select class="form-control ui-select ui-select" id="status" name="status">
-                                    <option value="1" {{$member->status == 1 ? 'selected' : ''}}>Đã kích hoạt</option>
-                                    <option value="0" {{$member->status == 0 ? 'selected' : ''}}>Đã vô hiệu</option>
+                                    <option value="1" {{$medias->status == 1 ? 'selected' : ''}}>Đã kích hoạt</option>
+                                    <option value="0" {{$medias->status == 0 ? 'selected' : ''}}>Đã vô hiệu</option>
                                 </select>
                                 @if ($errors->first('status'))
                                     <div class="error">{{ $errors->first('status') }}</div>
@@ -118,11 +130,11 @@
                             </div>
                             <div class="widget-body">
                                 <div class="image-box">
-                                    @if ($member->avatar)
+                                    @if ($medias->avatar)
                                         <input id="thumbnail" type="hidden" name="thumbnail"
-                                               value="{{$member->avatar }}" class="image-data">
+                                               value="{{$medias->avatar }}" class="image-data">
                                         <div class="preview-image-wrapper ">
-                                            <img id="holder" class="preview_image" src="{{ $member->avatar }}"
+                                            <img id="holder" class="preview_image" src="{{ $medias->avatar }}"
                                                  type="text" name="filepath" alt="preview image">
                                             <a class="btn_remove_image" title="Xoá ảnh">
                                                 <i class="fa fa-times"></i>

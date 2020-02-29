@@ -8,6 +8,8 @@ Route::post('images-delete','User\HomeController@deleteImage')->name('images-del
 Route::post('images-save','User\HomeController@saveImage')->name('images-save');
 Route::get('lang/{lang}','LangController@lang')->name('lang');
 
+Route::get('/','User\HomeController@index')->name('home');
+
 Route::group(['prefix' => 'system-admin', 'namespace' => 'Admin' , 'middleware' => 'adminLogin' ], function () {
   Route::get('/', 'DashboardController@index')->name('system_admin.dashboard');
   Route::get('mails', 'MailController@index')->name('system_admin.email.index');

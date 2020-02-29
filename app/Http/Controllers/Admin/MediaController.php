@@ -67,8 +67,8 @@ class MediaController extends Controller
     {
 
         $medias = Media::find($id);
-        $sub_media = Submedia::where('media_id',$id)->get();
-        return view('admin.media.edit', compact('medias','sub_media'));
+        $sub_medias = Submedia::where('media_id',$id)->get();
+        return view('admin.media.edit', compact('medias','sub_medias'));
     }
 
     public function update(Request $request)
