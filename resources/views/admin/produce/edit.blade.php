@@ -4,7 +4,7 @@
     <section class="content">
 
         <div class="clearfix"></div>
-        <form method="POST" action="{{route('system_admin.media.update',['id'=>$medias->id])}}">
+        <form method="POST" action="{{route('system_admin.produce.update',['id'=>$produce->id])}}">
             @method('PUT')
             {{ csrf_field() }}
 
@@ -21,7 +21,7 @@
                                 <div class="form-group">
                                     <label for="title" class="control-label required">Tiêu đề bài viết</label>
                                     <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
-                                           name="title" type="text" id="title" value="{{ $medias->title }}">
+                                           name="title" type="text" id="title" value="{{ $produce->title }}">
                                     @if ($errors->first('title'))
                                         <div class="error">{{ $errors->first('title') }}</div>
                                     @endif
@@ -30,28 +30,17 @@
                                 <div class="form-group">
                                     <label for="title" class="control-label required">Ngày</label>
                                     <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
-                                           name="date" type="text" id="date" value="{{ $medias->date }}"
+                                           name="date" type="text" id="date" value="{{ $produce->date }}"
                                            autocomplete="off">
                                     @if ($errors->first('title'))
                                         <div class="error">{{ $errors->first('title') }}</div>
                                     @endif
                                 </div>
 
-                                @if(count($sub_medias) > 0)
-                                    @foreach($sub_medias as $key => $sub_media)
-                                            <div class="form-group">
-
-                                                <label for="" class="control-label required">Các bài viết đi
-                                                    kèm({{$key + 1}}) </label>
-                                                <input type="text" name="" class="form-control" value="{{$sub_media->title}}">
-                                                <br>
-                                                <label for="" class="control-label required">Link bài viết</label>
-                                                <input type="text" name="" class="form-control"
-                                                       placeholder="Nhập tên trang" value="{{$sub_media->link}}">
-
-                                            </div>
-                                    @endforeach
-                                @endif
+                                <div class="form-group">
+                                    <label for="link" class="control-label required">Link</label>
+                                    <input type="text" name="link" class="form-control" value="{{$produce->link}}">
+                                </div>
                             </div>
                         </div><!-- end.tab-content -->
                     </div>
@@ -79,8 +68,8 @@
                         <div class="widget-body">
                             <div class="ui-select-wrapper">
                                 <select class="form-control ui-select ui-select" id="status" name="status">
-                                    <option value="1" {{$medias->status == 1 ? 'selected' : ''}}>Đã kích hoạt</option>
-                                    <option value="0" {{$medias->status == 0 ? 'selected' : ''}}>Đã vô hiệu</option>
+                                    <option value="1" {{$produce->status == 1 ? 'selected' : ''}}>Đã kích hoạt</option>
+                                    <option value="0" {{$produce->status == 0 ? 'selected' : ''}}>Đã vô hiệu</option>
                                 </select>
                                 @if ($errors->first('status'))
                                     <div class="error">{{ $errors->first('status') }}</div>
@@ -93,11 +82,11 @@
                             </div>
                             <div class="widget-body">
                                 <div class="image-box">
-                                    @if ($medias->avatar)
+                                    @if ($produce->avatar)
                                         <input id="thumbnail" type="hidden" name="thumbnail"
-                                               value="{{$medias->avatar }}" class="image-data">
+                                               value="{{$produce->avatar }}" class="image-data">
                                         <div class="preview-image-wrapper ">
-                                            <img id="holder" class="preview_image" src="{{ $medias->avatar }}"
+                                            <img id="holder" class="preview_image" src="{{ $produce->avatar }}"
                                                  type="text" name="filepath" alt="preview image">
                                             <a class="btn_remove_image" title="Xoá ảnh">
                                                 <i class="fa fa-times"></i>

@@ -1,7 +1,24 @@
 jQuery(document).ready(function(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    window.addEventListener("dragover",function(e){
+      e = e || event;
+      e.preventDefault();
+    },false);
+    window.addEventListener("drop",function(e){
+      e = e || event;
+      e.preventDefault();
+    },false);
+    today = yyyy + '/' + mm + '/' + dd;
+     $('#date_writer').datepicker({
+      format: "dd/mm/yyyy",
+      endDate: 'today'
+    })
   // Slide Toggle Filters
 	$('.btn-show-table-options').click(function(t) {
-		t.preventDefault(), 
+		t.preventDefault(),
 		$(this).closest(".dataTables_wrapper").find(".table-configuration-wrap").slideToggle(500)
 	});
   //iCheck for checkbox and radio inputs
@@ -193,6 +210,3 @@ function restore( url , url_callback , text = '' ) {
     });
   }
 }
-$('.grid-refresh').click(function(){
-  location.reload();
-});

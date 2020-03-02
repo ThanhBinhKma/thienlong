@@ -17,6 +17,7 @@ class Creatememberstable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('position');
+            $table->string('position_id');
             $table->string('avatar');
             $table->integer('status');
             $table->timestamps();

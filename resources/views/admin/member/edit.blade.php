@@ -33,6 +33,13 @@
                   @endif
                 </div>
 
+                <div class="form-group">
+                  <label for="title" class="control-label required">Lựa chọn vị trí</label>
+                  <select name="position_id" id="" class="form-control">
+                    <option value="1" {{$member->position_id == 1 ? 'selected' : ''}}>Giám đốc</option>
+                    <option value="2" {{$member->position_id == 2 ? 'selected' : ''}}>Nhân viên</option>
+                  </select>
+                </div>
             
               </div>
             </div><!-- end.tab-content -->
