@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Media;
 use App\Models\Submedia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Media;
 
-class MediaController extends Controller
+class SubMediaController extends Controller
 {
     const TAKE = 15;
     const ORDERBY = 'desc';
@@ -17,17 +17,17 @@ class MediaController extends Controller
         $status = $request->status;
 
         try {
-            $conditions = Media::select('medias.id', 'medias.title', 'medias.date', 'medias.avatar', 'medias.status', 'medias.created_at');
+            $conditions = Submedia::select('submedias.id', 'submedias.title', 'submedias.media_id', 'submedias.link', 'submedias.status', 'submedias.created_at');
             if (isset($status)) {
-                $conditions = $conditions->where('medias.status', '=', $status);
+                $conditions = $conditions->where('submedias.status', '=', $status);
             }
             if ($request->has('keyword')) {
 
-                $conditions = $conditions->where('medias.title', 'like', '%' . $request->keyword . '%');
+                $conditions = $conditions->where('submedias.title', 'like', '%' . $request->keyword . '%');
             }
-            $conditions->orderBy('medias.id', self::ORDERBY);
-            $medias = $conditions->paginate(self::TAKE);
-            return view('admin.media.index', compact('medias'));
+            $conditions->orderBy('submedias.id', self::ORDERBY);
+            $submedias = $conditions->paginate(self::TAKE);
+            return view('admin.sub_media.index', compact('submedias'));
 
         } catch (\Exception $e) {
             return $this->renderJsonResponse($e->getMessage());
@@ -36,41 +36,48 @@ class MediaController extends Controller
 
     public function create()
     {
-        return view('admin.media.create');
+        $medias = Media::select('id','title')->get();
+        return view('admin.sub_media.create',compact('medias'));
     }
 
     public function store(Request $request)
     {
-        $media = new Media();
-        $media->title = $request->title;
-        $media->slug = str_slug($request->title, '-');
-        $media->date = $request->date;
-        $media->status = $request->status;
-        $media->avatar = $request->thumbnail;
-        $media->save();
-        return redirect()->route('system_admin.media.index');
+
+        $title_sub = $request->title;
+        $link_sub = $request->link;
+        $count = count($request->title);
+        for ($i = 0; $i < $count; $i++) {
+            $submedia = new Submedia();
+            $submedia->media_id = $request->media;
+            $submedia->title = $title_sub[$i];
+            $submedia->slug = str_slug($title_sub[$i], '-');
+            $submedia->link = $link_sub[$i];
+            $submedia->status = 1;
+            $submedia->save();
+
+        }
+        return redirect()->route('system_admin.submedia.index');
     }
 
     public function edit($id)
     {
-
-        $medias = Media::find($id);
-        $sub_medias = Submedia::where('media_id',$id)->get();
-        return view('admin.media.edit', compact('medias','sub_medias'));
+        $sub_media = Submedia::find($id);
+        $medias = Media::all();
+        return view('admin.sub_media.edit', compact('medias','sub_media'));
     }
 
     public function update(Request $request)
     {
-        $media = Media::find($request->id);
-        if ($media) {
+        $sub_media = Submedia::find($request->id);
+        if ($sub_media) {
             $data = [
                 'title' => $request->title,
-                'date' => $request->date,
-                'avatar' => $request->thumbnail,
-                'status' => $request->status,
                 'slug' =>str_slug($request->title, '-'),
+                'link' => $request->link,
+                'media_id' => $request->media,
+                'status' => $request->status,
             ];
-            $media->update($data);
+            $sub_media->update($data);
             return redirect()->back()->with(['status_update' => 'Cập nhật bài đăng thành công!']);
         }
     }

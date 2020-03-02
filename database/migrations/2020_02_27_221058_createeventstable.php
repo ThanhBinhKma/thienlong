@@ -18,6 +18,8 @@ class Createeventstable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('avatar');
+            $table->string('date');
+            $table->string('place');
             $table->integer('status');
             $table->timestamps();
         });

@@ -5,7 +5,7 @@
     $request = request();
   @endphp
   <section class="content dataTables_wrapper">
-    
+    {{ Breadcrumbs::render('event') }}
     <div class="clearfix"></div>
     @if (session('status_store'))
       <div class="note note-success"><p>{{ session('status_store') }}</p></div>
@@ -66,7 +66,7 @@
                 </ul>
               </div>
               <div class="btn-group pull-right" style="margin-right: 10px">
-                <a href="{{route('system_admin.member.create')}}" class="btn btn-sm btn-success" title="New">
+                <a href="{{route('system_admin.event.create')}}" class="btn btn-sm btn-success" title="New">
                   <i class="fa fa-save"></i><span class="hidden-xs">&nbsp;&nbsp;Thêm mới</span>
                 </a>
               </div>
@@ -103,42 +103,42 @@
                   <th>
                     ID<a class="fa fa-fw fa-sort" href="#"></a>
                   </th>
-                  <th style="width: 150px;">Tên</th>
+                  <th style="width: 150px;">Tiêu đề</th>
                   <th>Ảnh</th>
-                  <th>Vị trí</th>
+                  <th>Ngày</th>
                   <th>Trạng thái</th>
                   <th>Ngày tạo</th>
                   <th>Tác vụ</th>
                 </tr>
               </thead>
               <tbody>
-                @if (count($members) >0)
-                  @foreach($members as $member) 
+                @if (count($events) >0)
+                  @foreach($events as $event)
                     <tr>
-                      <td><input type="checkbox" class="grid-row-checkbox" data-id="{{ $member->id }}" /></td>
+                      <td><input type="checkbox" class="grid-row-checkbox" data-id="{{ $event->id }}" /></td>
                       <td>
-                        {{ $member->id }}
+                        {{ $event->id }}
                       </td>
                       <td>
-                        <a class="text-left" href="" title="{{ $member->name }}" >{{ $member->name }}</a>
+                        <a class="text-left" href="" title="{{ $event->title }}" >{{ $event->title }}</a>
 
                       </td>
                       <td style="width: 100px;">
-                        <img src="{{$member->avatar}}" alt="" style="max-width: 100%">
+                        <img src="{{$event->avatar}}" alt="" style="max-width: 100%">
                       </td>
                       <td>
-                        {{$member->position}}
+                        {{$event->date}}
                       </td>
-                      <td> {!! \App\Helpers\Common::checkStatus($member->status) !!} </td>
-                      <td> {{ \Carbon\Carbon::parse($member->created_at)->format('d/m/Y H:i:s')}}</td>
+                      <td> {!! \App\Helpers\Common::checkStatus($event->status) !!} </td>
+                      <td> {{ \Carbon\Carbon::parse($event->created_at)->format('d/m/Y H:i:s')}}</td>
                       <td>
-                         <a href="{{route('system_admin.member.edit',['id'=>$member->id])}}" class="btn btn-icon btn-sm btn-warning tip">
+                         <a href="{{route('system_admin.event.edit',['id'=>$event->id])}}" class="btn btn-icon btn-sm btn-warning tip">
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                         <a href="http://darianculbert.com/blog/32/le-hoi-nguoi-cham" class="btn btn-icon btn-sm btn-primary tip">
                           <i class="fa fa-eye"></i>
                         </a>
-                        <a href="javascript:void(0);" data-id="{{$member->id}}" class="btn btn-icon btn-sm btn-danger deleteDialog tip">
+                        <a href="javascript:void(0);" data-id="{{$event->id}}" class="btn btn-icon btn-sm btn-danger deleteDialog tip">
                           <i class="fa fa-trash"></i>
                         </a>
                       </td>
@@ -151,11 +151,11 @@
           </div>
           <div class="box-footer clearfix">
             <div class="col-md-5">
-              Hiển thị trang <b>{{ $members->currentPage() }}</b> / <b>{{ $members->lastPage() }}</b>
+              Hiển thị trang <b>{{ $events->currentPage() }}</b> / <b>{{ $events->lastPage() }}</b>
             </div>
             <div class="col-md-7"> 
               {{ 
-                $members->appends([
+                $events->appends([
                   'keyword' => $request->query('keyword'),
                   'status' => $request->query('status'),
                 ])->links() 

@@ -2,14 +2,14 @@
 @section('title','Thêm trang mới')
 @section('content')
   <section class="content">
-{{--     {{ Breadcrumbs::render('addpage') }} --}}
+     {{ Breadcrumbs::render('addevent') }}
     <div class="clearfix"></div>
-    <form method="POST" action="{{route('system_admin.member.store')}}">
+    <form method="POST" action="{{route('system_admin.event.store')}}">
       {{ csrf_field() }}
       @if ($errors->all())
         <div class="note note-danger"><p>Vui lòng điền đầy đủ thông tin</p></div>
       @else 
-        <div class="note note-success"><p>Bạn đang tạo trang mới</p></div>
+        <div class="note note-success"><p>Bạn đang tạo sự kiện mới</p></div>
       @endif
       <div class="row">
         <div class="col-md-9">
@@ -22,21 +22,43 @@
             <div class="tab-content">
               <div class="tab-pane active show" id="tab_detail">
                 <div class="form-group">
-                  <label for="title" class="control-label required">Tên thành viên</label>
-                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120" name="name_member" type="text" id="title" value="{{ old('title') }}">
+                  <label for="title" class="control-label required">Tiêu đề</label>
+                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120" name="title" type="text" id="title" value="{{ old('title') }}">
                   @if ($errors->first('title')) 
                     <div class="error">{{ $errors->first('title') }}</div>
                   @endif
                 </div>
 
                 <div class="form-group">
-                  <label for="title" class="control-label required">Vị trí</label>
-                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120" name="position" type="text" id="title" value="{{ old('title') }}"> 
-                  @if ($errors->first('title')) 
+                  <label for="title" class="control-label required">Ngày</label>
+                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
+                         name="date" type="text" id="date" value="{{ old('title') }}"
+                         autocomplete="off">
+                  @if ($errors->first('title'))
                     <div class="error">{{ $errors->first('title') }}</div>
                   @endif
-                </div>        
+                </div>
 
+                <div class="form-group">
+                  <label for="title" class="control-label required">Địa điểm</label>
+                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120" name="place" type="text" id="title" value="{{ old('place') }}">
+                  @if ($errors->first('title'))
+                    <div class="error">{{ $errors->first('title') }}</div>
+                  @endif
+                </div>
+
+                <div class="form-group box-body pad">
+                  <textarea class="high" rows="10" placeholder="Nội dung trang" data-counter="400" name="content" cols="50" id="content">{!! old('content') !!}</textarea>
+                  @if ($errors->first('content'))
+                    <div class="error">{{ $errors->first('content') }}</div>
+                  @endif
+                </div>
+
+                <div class="form-group">
+                  <label for="description" class="control-label">Cruise Gallery</label>
+                  <div class="dropzone dropzone-previews" name="" id="my-awesome-dropzone"></div>
+                </div>
+                <input type="hidden" name="images" id="cruise_gallery" >
               </div>
             </div><!-- end.tab-content -->
           </div>
@@ -103,12 +125,16 @@
   </section>
 @stop
 @section('addjs')
-  <script src="vendor/laravel-filemanager/js/lfm.js"></script>
+  <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+  <script src="js/dropzone-config.js"></script>
   <script type="text/javascript">
     $('#lfm').filemanager('image');
+    $('#date').datepicker({
+        format: 'yyyy-mm-dd',
+    });
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
       checkboxClass: 'icheckbox_minimal-blue',
       radioClass   : 'iradio_minimal-blue'
-    })
+    });
   </script>
 @stop

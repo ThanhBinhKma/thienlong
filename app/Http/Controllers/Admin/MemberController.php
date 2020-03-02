@@ -42,6 +42,7 @@ class MemberController extends Controller
       $member = new Member();
       $member->name = $request->name_member;
       $member->position = $request->position;
+      $member->position_id = $request->position_id;
       $member->status = $request->status;
       $member->avatar = $request->thumbnail; 
       $member->save();
@@ -63,6 +64,7 @@ class MemberController extends Controller
         $data = [
           'name_member' => $request->name_member,
           'position' => $request->position,
+          'position_id' => $request->position_id,
           'avatar' => $request->thumbnail,
           'status' => $request->status,
         ];

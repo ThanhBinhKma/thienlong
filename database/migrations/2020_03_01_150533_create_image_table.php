@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Createsubmediastable extends Migration
+class CreateImageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class Createsubmediastable extends Migration
      */
     public function up()
     {
-        Schema::create('submedias', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('media_id');
-            $table->string('title');
-            $table->string('slug');
             $table->string('link');
-            $table->integer('status');
+            $table->string('event_id');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class Createsubmediastable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submedias');
+        Schema::dropIfExists('images');
     }
 }

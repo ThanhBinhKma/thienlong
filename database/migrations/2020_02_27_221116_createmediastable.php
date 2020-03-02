@@ -16,6 +16,7 @@ class Createmediastable extends Migration
         Schema::create('medias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('slug');
             $table->date('date');
             $table->string('avatar');
             $table->integer('status');

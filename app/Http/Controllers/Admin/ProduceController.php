@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Submedia;
+use App\Models\Produce;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Media;
 
-class MediaController extends Controller
+class ProduceController extends Controller
 {
     const TAKE = 15;
     const ORDERBY = 'desc';
@@ -17,17 +16,17 @@ class MediaController extends Controller
         $status = $request->status;
 
         try {
-            $conditions = Media::select('medias.id', 'medias.title', 'medias.date', 'medias.avatar', 'medias.status', 'medias.created_at');
+            $conditions = Produce::select('produces.id', 'produces.title','produces.date','produces.avatar', 'produces.link', 'produces.status', 'produces.created_at');
             if (isset($status)) {
-                $conditions = $conditions->where('medias.status', '=', $status);
+                $conditions = $conditions->where('produces.status', '=', $status);
             }
             if ($request->has('keyword')) {
 
-                $conditions = $conditions->where('medias.title', 'like', '%' . $request->keyword . '%');
+                $conditions = $conditions->where('produces.title', 'like', '%' . $request->keyword . '%');
             }
-            $conditions->orderBy('medias.id', self::ORDERBY);
-            $medias = $conditions->paginate(self::TAKE);
-            return view('admin.media.index', compact('medias'));
+            $conditions->orderBy('produces.id', self::ORDERBY);
+            $produces = $conditions->paginate(self::TAKE);
+            return view('admin.produce.index', compact('produces'));
 
         } catch (\Exception $e) {
             return $this->renderJsonResponse($e->getMessage());
@@ -36,41 +35,41 @@ class MediaController extends Controller
 
     public function create()
     {
-        return view('admin.media.create');
+        return view('admin.produce.create');
     }
 
     public function store(Request $request)
     {
-        $media = new Media();
-        $media->title = $request->title;
-        $media->slug = str_slug($request->title, '-');
-        $media->date = $request->date;
-        $media->status = $request->status;
-        $media->avatar = $request->thumbnail;
-        $media->save();
-        return redirect()->route('system_admin.media.index');
+        $produce = new Produce();
+        $produce->title = $request->title;
+        $produce->slug = str_slug($request->title, '-');
+        $produce->date = $request->date;
+        $produce->link = $request->link;
+        $produce->avatar = $request->thumbnail;
+        $produce->status = $request->status;
+        $produce->save();
+        return redirect()->route('system_admin.produce.index');
     }
 
     public function edit($id)
     {
-
-        $medias = Media::find($id);
-        $sub_medias = Submedia::where('media_id',$id)->get();
-        return view('admin.media.edit', compact('medias','sub_medias'));
+        $produce = Produce::find($id);
+        return view('admin.produce.edit', compact('produce'));
     }
 
     public function update(Request $request)
     {
-        $media = Media::find($request->id);
-        if ($media) {
+        $produce = Produce::find($request->id);
+        if ($produce) {
             $data = [
                 'title' => $request->title,
-                'date' => $request->date,
-                'avatar' => $request->thumbnail,
-                'status' => $request->status,
                 'slug' =>str_slug($request->title, '-'),
+                'link' => $request->link,
+                'date' => $request->date,
+                'status' => $request->status,
+                'avatar' => $request->thumbnail,
             ];
-            $media->update($data);
+            $produce->update($data);
             return redirect()->back()->with(['status_update' => 'Cập nhật bài đăng thành công!']);
         }
     }
