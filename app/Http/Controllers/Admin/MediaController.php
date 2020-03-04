@@ -6,6 +6,7 @@ use App\Models\Submedia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Media;
+use App\Http\Requests\CreateMediaRequest;
 
 class MediaController extends Controller
 {
@@ -39,7 +40,7 @@ class MediaController extends Controller
         return view('admin.media.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateMediaRequest $request)
     {
         $media = new Media();
         $media->title = $request->title;

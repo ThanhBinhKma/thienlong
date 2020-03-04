@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Produce;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\EditProductRequest;
 
 class ProduceController extends Controller
 {
@@ -38,7 +40,7 @@ class ProduceController extends Controller
         return view('admin.produce.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
         $produce = new Produce();
         $produce->title = $request->title;
@@ -57,7 +59,7 @@ class ProduceController extends Controller
         return view('admin.produce.edit', compact('produce'));
     }
 
-    public function update(Request $request)
+    public function update(EditProductRequest $request)
     {
         $produce = Produce::find($request->id);
         if ($produce) {

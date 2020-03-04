@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Image;
+use App\Http\Requests\CreateEventRequest;
+use App\Http\Requests\EditEvenRequest;
 
 class EventController extends Controller
 {
@@ -39,7 +41,7 @@ class EventController extends Controller
         return view('admin.event.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateEventRequest $request)
     {
         $event = new Event();
         $event->title = $request->title;
@@ -68,7 +70,7 @@ class EventController extends Controller
         return view('admin.event.edit', compact('event', 'images'));
     }
 
-    public function update(Request $request)
+    public function update(EditEvenRequest $request)
     {
         $event = Event::find($request->id);
         if ($event) {

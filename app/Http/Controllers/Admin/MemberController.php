@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Member;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\EditUserRequest;
 
 class MemberController extends Controller
 {
@@ -38,7 +40,7 @@ class MemberController extends Controller
         return view('admin.member.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
         $member = new Member();
         $member->name = $request->name_member;
@@ -58,7 +60,7 @@ class MemberController extends Controller
         return view('admin.member.edit', compact('member'));
     }
 
-    public function update(Request $request)
+    public function update(EditUserRequest $request)
     {
         $member = Member::find($request->id);
         if ($member) {
