@@ -4,7 +4,7 @@
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>A</b>LT</span>
     <span class="logo-lg">
-     Base Laravel
+     Phi Long Media
     </span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
