@@ -78,10 +78,10 @@ class MediaController extends Controller
     public function destroy(Request $request)
     {
         try {
-            $member = Member::where('id', $request->id)->first();
-            if ($member->status == Member::PUBLISHED) {
-                $member->status = Member::PENDING;
-                $member->save();
+            $media = Media::where('id', $request->id)->first();
+            if ($media->status == Media::PUBLISHED) {
+                $media->status = Media::PENDING;
+                $media->save();
                 return response()->json(array('status' => true, 'html' => 'Thành công'));
             } else {
                 return response()->json(array('msg' => 'Danh mục chưa tồn tại hoặc chưa được kích hoạt'));
@@ -101,10 +101,10 @@ class MediaController extends Controller
         try {
             $ids = $request->id;
             $arr_id = explode(',', $ids);
-            $members = Member::whereIn('id', $arr_id)->select('id', 'status')->get();
-            foreach ($members as $member) {
-                $member->status = Member::PENDING;
-                $member->save();
+            $medias = Media::whereIn('id', $arr_id)->select('id', 'status')->get();
+            foreach ($medias as $media) {
+                $media->status = Media::PENDING;
+                $media->save();
             }
             return response()->json(array('status' => true, 'msg' => 'Thành công'));
         } catch (\Exception $e) {
@@ -122,10 +122,10 @@ class MediaController extends Controller
         try {
             $ids = $request->id;
             $arr_id = explode(',', $ids);
-            $members = Member::whereIn('id', $arr_id)->select('id', 'status')->get();
-            foreach ($members as $member) {
-                $member->status = Member::PUBLISHED;
-                $member->save();
+            $medias = Media::whereIn('id', $arr_id)->select('id', 'status')->get();
+            foreach ($medias as $media) {
+                $media->status = Media::PUBLISHED;
+                $media->save();
             }
             return response()->json(array('status' => true, 'msg' => 'Thành công'));
         } catch (\Exception $e) {

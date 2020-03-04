@@ -39,7 +39,8 @@ class EventController extends Controller
         return view('admin.event.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $event = new Event();
         $event->title = $request->title;
         $event->date = $request->date;
@@ -48,8 +49,8 @@ class EventController extends Controller
         $event->description = $request->content;
         $event->avatar = $request->thumbnail;
         $event->save();
-        $images= json_decode($request->images);
-        foreach ($images as $image){
+        $images = json_decode($request->images);
+        foreach ($images as $image) {
             $im = new Image();
             $im->link = $image;
             $im->event_id = $event->id;
@@ -63,32 +64,42 @@ class EventController extends Controller
     {
 
         $event = Event::find($id);
-        $images =Image::where('event_id',$id)->get();
-        return view('admin.event.edit', compact('event','images'));
+        $images = Image::where('event_id', $id)->get();
+        return view('admin.event.edit', compact('event', 'images'));
     }
 
     public function update(Request $request)
     {
-        $member = Member::find($request->id);
-        if ($member) {
+        $event = Event::find($request->id);
+        if ($event) {
             $data = [
-                'name_member' => $request->name_member,
-                'position' => $request->position,
-                'avatar' => $request->thumbnail,
+                'title' => $request->title,
+                'date' => $request->date,
+                'place' => $request->place,
                 'status' => $request->status,
+                'description ' => $request->content,
+                'avatar' => $request->thumbnail
             ];
-            $member->update($data);
-            return redirect()->back()->with(['status_update' => 'Cập nhật bài đăng thành công!']);
+           $image = Image::where('event_id',$request->id)->delete();
+            $images = json_decode($request->images);
+            foreach ($images as $image) {
+                $im = new Image();
+                $im->link = $image;
+                $im->event_id = $event->id;
+                $im->status = 1;
+                $im->save();
+            }
+            return redirect()->route('system_admin.event.index')->with(['status_update' => 'Cập nhật bài đăng thành công!']);
         }
     }
 
     public function destroy(Request $request)
     {
         try {
-            $member = Member::where('id', $request->id)->first();
-            if ($member->status == Member::PUBLISHED) {
-                $member->status = Member::PENDING;
-                $member->save();
+            $event = Event::where('id', $request->id)->first();
+            if ($event->status == Event::PUBLISHED) {
+                $event->status = Event::PENDING;
+                $event->save();
                 return response()->json(array('status' => true, 'html' => 'Thành công'));
             } else {
                 return response()->json(array('msg' => 'Danh mục chưa tồn tại hoặc chưa được kích hoạt'));
@@ -108,10 +119,10 @@ class EventController extends Controller
         try {
             $ids = $request->id;
             $arr_id = explode(',', $ids);
-            $members = Member::whereIn('id', $arr_id)->select('id', 'status')->get();
-            foreach ($members as $member) {
-                $member->status = Member::PENDING;
-                $member->save();
+            $events = Event::whereIn('id', $arr_id)->select('id', 'status')->get();
+            foreach ($events as $event) {
+                $event->status = Event::PENDING;
+                $event->save();
             }
             return response()->json(array('status' => true, 'msg' => 'Thành công'));
         } catch (\Exception $e) {
@@ -129,10 +140,10 @@ class EventController extends Controller
         try {
             $ids = $request->id;
             $arr_id = explode(',', $ids);
-            $members = Member::whereIn('id', $arr_id)->select('id', 'status')->get();
-            foreach ($members as $member) {
-                $member->status = Member::PUBLISHED;
-                $member->save();
+            $events = Event::whereIn('id', $arr_id)->select('id', 'status')->get();
+            foreach ($events as $event) {
+                $event->status = Event::PUBLISHED;
+                $event->save();
             }
             return response()->json(array('status' => true, 'msg' => 'Thành công'));
         } catch (\Exception $e) {

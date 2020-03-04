@@ -36,8 +36,8 @@ class SubMediaController extends Controller
 
     public function create()
     {
-        $medias = Media::select('id','title')->get();
-        return view('admin.sub_media.create',compact('medias'));
+        $medias = Media::select('id', 'title')->get();
+        return view('admin.sub_media.create', compact('medias'));
     }
 
     public function store(Request $request)
@@ -63,7 +63,7 @@ class SubMediaController extends Controller
     {
         $sub_media = Submedia::find($id);
         $medias = Media::all();
-        return view('admin.sub_media.edit', compact('medias','sub_media'));
+        return view('admin.sub_media.edit', compact('medias', 'sub_media'));
     }
 
     public function update(Request $request)
@@ -72,7 +72,7 @@ class SubMediaController extends Controller
         if ($sub_media) {
             $data = [
                 'title' => $request->title,
-                'slug' =>str_slug($request->title, '-'),
+                'slug' => str_slug($request->title, '-'),
                 'link' => $request->link,
                 'media_id' => $request->media,
                 'status' => $request->status,
@@ -85,10 +85,10 @@ class SubMediaController extends Controller
     public function destroy(Request $request)
     {
         try {
-            $member = Member::where('id', $request->id)->first();
-            if ($member->status == Member::PUBLISHED) {
-                $member->status = Member::PENDING;
-                $member->save();
+            $submedia = Submedia::where('id', $request->id)->first();
+            if ($submedia->status == Submedia::PUBLISHED) {
+                $submedia->status = Submedia::PENDING;
+                $submedia->save();
                 return response()->json(array('status' => true, 'html' => 'Thành công'));
             } else {
                 return response()->json(array('msg' => 'Danh mục chưa tồn tại hoặc chưa được kích hoạt'));
@@ -108,10 +108,10 @@ class SubMediaController extends Controller
         try {
             $ids = $request->id;
             $arr_id = explode(',', $ids);
-            $members = Member::whereIn('id', $arr_id)->select('id', 'status')->get();
-            foreach ($members as $member) {
-                $member->status = Member::PENDING;
-                $member->save();
+            $submedias = Submedia::whereIn('id', $arr_id)->select('id', 'status')->get();
+            foreach ($submedias as $submedia) {
+                $submedia->status = Submedia::PENDING;
+                $submedia->save();
             }
             return response()->json(array('status' => true, 'msg' => 'Thành công'));
         } catch (\Exception $e) {
@@ -129,10 +129,10 @@ class SubMediaController extends Controller
         try {
             $ids = $request->id;
             $arr_id = explode(',', $ids);
-            $members = Member::whereIn('id', $arr_id)->select('id', 'status')->get();
-            foreach ($members as $member) {
-                $member->status = Member::PUBLISHED;
-                $member->save();
+            $submedias = Submedia::whereIn('id', $arr_id)->select('id', 'status')->get();
+            foreach ($submedias as $submedia) {
+                $submedia->status = Submedia::PUBLISHED;
+                $submedia->save();
             }
             return response()->json(array('status' => true, 'msg' => 'Thành công'));
         } catch (\Exception $e) {

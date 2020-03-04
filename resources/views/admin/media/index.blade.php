@@ -187,14 +187,14 @@
         $(document).ready(function () {
             $('.deleteDialog').on('click', function () {
                 var post_id = $(this).attr('data-id');
-                destroy(post_id, '{{ route('system_admin.member.destroy') }}', '{{ route('system_admin.member.index') }}', "Bạn muốn xóa bài đăng này!");
+                destroy(post_id, '{{ route('system_admin.media.destroy') }}', '{{ route('system_admin.media.index') }}', "Bạn muốn xóa bài đăng này!");
             });
         });
         $('.grid-batch-0').on('click', function () {
-            destroyAll('{{ route('system_admin.member.destroyAll') }}', '{{ route('system_admin.member.index') }}', "Bạn muốn xóa các bài đăng đã chọn?");
+            destroyAll('{{ route('system_admin.media.destroyAll') }}', '{{ route('system_admin.media.index') }}', "Bạn muốn xóa các bài đăng đã chọn?");
         });
         $('.grid-batch-1').on('click', function () {
-            restore('{{ route('system_admin.member.restore') }}', '{{ route('system_admin.member.index') }}', "Bạn muốn phục hồi các bài đăng đã chọn?");
+            restore('{{ route('system_admin.media.restore') }}', '{{ route('system_admin.media.index') }}', "Bạn muốn phục hồi các bài đăng đã chọn?");
         });
         $('.grid-refresh').click(function () {
             location.reload(true);

@@ -25,7 +25,7 @@
                                 <div class="form-group">
                                     <label for="title" class="control-label required">Tiêu đề</label>
                                     <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
-                                           name="title" type="text" id="title" value="{{ old('title') }}">
+                                           name="title" type="text" id="title" value="{{ $event->title}}">
                                     @if ($errors->first('title'))
                                         <div class="error">{{ $errors->first('title') }}</div>
                                     @endif
@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label for="title" class="control-label required">Ngày</label>
                                     <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
-                                           name="date" type="text" id="date" value="{{ old('title') }}"
+                                           name="date" type="text" id="date" value="{{ $event->date }}"
                                            autocomplete="off">
                                     @if ($errors->first('title'))
                                         <div class="error">{{ $errors->first('title') }}</div>
@@ -44,7 +44,7 @@
                                 <div class="form-group">
                                     <label for="title" class="control-label required">Địa điểm</label>
                                     <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
-                                           name="place" type="text" id="title" value="{{ old('place') }}">
+                                           name="place" type="text" id="title" value="{{ $event->date }}">
                                     @if ($errors->first('title'))
                                         <div class="error">{{ $errors->first('title') }}</div>
                                     @endif
@@ -52,7 +52,8 @@
 
                                 <div class="form-group box-body pad">
                                     <textarea class="high" rows="10" placeholder="Nội dung trang" data-counter="400"
-                                              name="content" cols="50" id="content">{!! old('content') !!}</textarea>
+                                              name="content" cols="50"
+                                              id="content">{!! $event->description !!}</textarea>
                                     @if ($errors->first('content'))
                                         <div class="error">{{ $errors->first('content') }}</div>
                                     @endif
@@ -159,17 +160,19 @@ swal(
             'success'
         )
         @endif
-
-$("div#my-awesome-dropzone").dropzone({
-            url: "/system-admin/upload-image",
-            acceptedFiles: "image/*",
-            addRemoveLinks: true,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            init: function () {
-            @if(count($images) > 0)
-                @foreach($images as $image)
+            Dropzone.autoDiscover = false;
+        var cruise_gallery = [];
+        jQuery(document).ready(function() {
+            $("div#my-awesome-dropzone").dropzone({
+                url: "/system-admin/upload-image",
+                acceptedFiles: "image/*",
+                addRemoveLinks: true,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                init: function () {
+                            @if(count($images) > 0)
+                            @foreach($images as $image)
                     var myDropzone = this;
                     var mockFile = {
                         name: '{{explode('/', $image->link)[3]}}',
@@ -180,39 +183,40 @@ $("div#my-awesome-dropzone").dropzone({
                     myDropzone.options.thumbnail.call(myDropzone, mockFile, '{{$image->link}}');
                     cruise_gallery.push('{{$image->link}}');
                     $('#cruise_gallery').val(JSON.stringify(cruise_gallery));
-                @endforeach
+                    @endforeach
              @endif
                 $('#cruise_gallery').val(JSON.stringify(cruise_gallery));
-            },
-            success: function (file, response) {
-                cruise_gallery.push(response);
-                $('#cruise_gallery').val(JSON.stringify(cruise_gallery));
-            },
-            removedfile: function (file) {
+                },
+                success: function (file, response) {
+                    cruise_gallery.push(response);
+                    $('#cruise_gallery').val(JSON.stringify(cruise_gallery));
+                },
+                removedfile: function (file) {
 
-                var name = file.name;
-                console.log(file);
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'POST',
-                    url: '/system-admin/delete-image',
-                    data: {filename: name, cruise_id: $('[name="cruise_id"]').val()},
-                    success: function (data) {
-                        cruise_gallery = [];
-                        $('#my-awesome-dropzone .dz-image img').each(function () {
-                            cruise_gallery.push($(this).attr('alt'));
-                        });
-                        $('#cruise_gallery').val(JSON.stringify(cruise_gallery));
-                    },
-                    error: function (e) {
-                    }
-                });
-                var fileRef;
-                return (fileRef = file.previewElement) != null ?
-                    fileRef.parentNode.removeChild(file.previewElement) : void 0;
-            },
+                    var name = file.name;
+                    console.log(file);
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'POST',
+                        url: '/system-admin/delete-image',
+                        data: {filename: name, cruise_id: $('[name="cruise_id"]').val()},
+                        success: function (data) {
+                            cruise_gallery = [];
+                            $('#my-awesome-dropzone .dz-image img').each(function () {
+                                cruise_gallery.push($(this).attr('alt'));
+                            });
+                            $('#cruise_gallery').val(JSON.stringify(cruise_gallery));
+                        },
+                        error: function (e) {
+                        }
+                    });
+                    var fileRef;
+                    return (fileRef = file.previewElement) != null ?
+                        fileRef.parentNode.removeChild(file.previewElement) : void 0;
+                },
+            });
         });
     </script>
 @stop

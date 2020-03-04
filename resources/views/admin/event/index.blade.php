@@ -23,11 +23,6 @@
                     <input type="text" name="keyword" class="form-control" id="keyword" placeholder="Nhập từ khóa tìm kiếm : Tên tài khoản..." @if($request->has('keyword')) value="{{ $request->keyword}}" @endif>
                   </div>
                 </div>
-        
-
-              
-
-
                 <div class="col-md-5">
                   <div class="form-group">
                     <select name="status" class="form-control" id="status">
@@ -173,14 +168,14 @@
     $(document).ready(function(){
       $('.deleteDialog').on('click', function() {
         var post_id = $(this).attr('data-id');
-        destroy( post_id , '{{ route('system_admin.member.destroy') }}' , '{{ route('system_admin.member.index') }}' , "Bạn muốn xóa bài đăng này!" );
+        destroy( post_id , '{{ route('system_admin.event.destroy') }}' , '{{ route('system_admin.event.index') }}' , "Bạn muốn xóa bài đăng này!" );
       }); 
     });
     $('.grid-batch-0').on('click', function() {
-      destroyAll( '{{ route('system_admin.member.destroyAll') }}' , '{{ route('system_admin.member.index') }}' , "Bạn muốn xóa các bài đăng đã chọn?" );
+      destroyAll( '{{ route('system_admin.event.destroyAll') }}' , '{{ route('system_admin.event.index') }}' , "Bạn muốn xóa các bài đăng đã chọn?" );
     });
     $('.grid-batch-1').on('click', function() {
-      restore( '{{ route('system_admin.member.restore') }}' , '{{ route('system_admin.member.index') }}' , "Bạn muốn phục hồi các bài đăng đã chọn?" );
+      restore( '{{ route('system_admin.event.restore') }}' , '{{ route('system_admin.event.index') }}' , "Bạn muốn phục hồi các bài đăng đã chọn?" );
     });
     $('.grid-refresh').click(function(){
       location.reload(true);
