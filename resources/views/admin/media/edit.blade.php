@@ -37,21 +37,6 @@
                                     @endif
                                 </div>
 
-                                @if(count($sub_medias) > 0)
-                                    @foreach($sub_medias as $key => $sub_media)
-                                            <div class="form-group">
-
-                                                <label for="" class="control-label required">Các bài viết đi
-                                                    kèm({{$key + 1}}) </label>
-                                                <input type="text" name="" class="form-control" value="{{$sub_media->title}}">
-                                                <br>
-                                                <label for="" class="control-label required">Link bài viết</label>
-                                                <input type="text" name="" class="form-control"
-                                                       placeholder="Nhập tên trang" value="{{$sub_media->link}}">
-
-                                            </div>
-                                    @endforeach
-                                @endif
                             </div>
                         </div><!-- end.tab-content -->
                     </div>
