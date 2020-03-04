@@ -34,20 +34,21 @@
                                         <div class="error">{{ $errors->first('title') }}</div>
                                     @endif
                                 </div>
+                                <div class="box box-info">
+                                    <div class="form-group">
+                                        <label for="" class="control-label required">Các bài viết đi kèm(1) </label>
+                                        <input type="text" name="title[]" class="form-control">
+                                        <br>
+                                        <label for="" class="control-label required">Link bài viết</label>
+                                        <input type="text" name="link[]" class="form-control" placeholder="Nhập tên trang">
 
-
-
-                                <div class="form-group">
-                                    <label for="" class="control-label required">Các bài viết đi kèm(1) </label>
-                                    <input type="text" name="title[]" class="form-control">
-                                    <br>
-                                    <label for="" class="control-label required">Link bài viết</label>
-                                    <input type="text" name="link[]" class="form-control" placeholder="Nhập tên trang">
-
+                                    </div>
+                                    <div class="form-group box-footer box_add_1">
+                                        <button class="add_submedia" type="button" data-browse="1" id="add_1">
+                                            +
+                                        </button>
+                                    </div>
                                 </div>
-                                <button class="add_submedia" type="button" data-browse="1" id="button_add_1">
-                                    +
-                                </button>
                             </div>
                         </div><!-- end.tab-content -->
                     </div>
@@ -104,14 +105,17 @@
         $(document).on('click', '.add_submedia', function () {
             i++;
             var x = i - 1;
-            $('#button_add_'+x).css('display','none');
             $('#button_delete_'+x).css('display','none');
-            $('div#tab_detail').append('<div class="form-group" id="form_group_'+i+'"> <label for=""  class="control-label required">Các bài viết đi kèm('+i+')</label><input type="text" name="title[]" class="form-control"> <br> <label for=""  class="control-label required">Link bài viết</label> <input type="text" name="link[]" class="form-control" placeholder="Nhập tên trang"></div><button class="add_submedia" type="button" id="button_add_'+i+'"> + </button> <button type="button" class="delete_submedia" id="button_delete_'+i+'" data-icon="'+i+'">-</button> ');
+            $('.box_add_'+x).css('display','none');
+            $('div#tab_detail').append('<div class="box box-info bc_'+i+'"><div class="form-group" id="form_group_'+i+'"> <label for=""  class="control-label required">Các bài viết đi kèm('+i+')</label><input type="text" name="title[]" class="form-control"> <br> <label for=""  class="control-label required">Link bài viết</label> <input type="text" name="link[]" class="form-control" placeholder="Nhập tên trang"></div><div class="form-group box-footer box_add_'+i+'" ><button class="add_submedia" type="button" id="add_'+i+'"> + </button> <button type="button" class="delete_submedia" id="'+i+'" data-icon="'+i+'">-</button></div></div> ');
         });
+
         $(document).on('click','.delete_submedia',function () {
-            var  u = $(this).attr("data-icon")
-            $('#button_delete_'+u).css('display','none');
-            $('#form_group_'+u+'').remove();
+            i--;
+            var  u = $(this).attr("id");
+            var t  =  u -1;
+            $('.box_add_'+t).css('display','block');
+            $('.bc_'+u).remove();
         });
     </script>
 @stop

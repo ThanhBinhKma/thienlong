@@ -17,12 +17,12 @@ class ImageController extends Controller
         $uploadPath = 'uploads/demo';
         $image->move(public_path($uploadPath),time().$imageName);
         $data = '/'.$uploadPath.'/'.time().$imageName;
-        return $data;
+        return response()->json($data);
     }
     public function fileDestroy(Request $request)
     {
         $filename =  $request->get('filename');
-        $path=public_path().'/uploads/demo/'.$filename;
+        $path=public_path().$filename;
         if (file_exists($path)) {
             unlink($path);
         }

@@ -19,7 +19,7 @@ Dropzone.autoDiscover = false;
                 $('#cruise_gallery').val(JSON.stringify(cruise_gallery));
             },
             removedfile: function (file) {
-                var name = file.upload.filename;
+                var name = JSON.parse(file.xhr.response);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

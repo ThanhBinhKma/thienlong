@@ -56,7 +56,7 @@ class EventController extends Controller
             $im->status = 1;
             $im->save();
         }
-        return redirect()->route('system_admin.member.index');
+        return redirect()->route('system_admin.event.index');
     }
 
     public function edit($id)

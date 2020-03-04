@@ -6,11 +6,7 @@
     <div class="clearfix"></div>
     <form method="POST" action="{{route('system_admin.event.store')}}">
       {{ csrf_field() }}
-      @if ($errors->all())
-        <div class="note note-danger"><p>Vui lòng điền đầy đủ thông tin</p></div>
-      @else 
-        <div class="note note-success"><p>Bạn đang tạo sự kiện mới</p></div>
-      @endif
+
       <div class="row">
         <div class="col-md-9">
           <div class="tabbable-custom">
