@@ -6,7 +6,8 @@ use App\Models\Media;
 use App\Models\Submedia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\CreateSubMediaRequest;
+use App\Http\Requests\EditSubMediaRequest;
 class SubMediaController extends Controller
 {
     const TAKE = 15;
@@ -40,7 +41,7 @@ class SubMediaController extends Controller
         return view('admin.sub_media.create', compact('medias'));
     }
 
-    public function store(Request $request)
+    public function store(CreateSubMediaRequest $request)
     {
 
         $title_sub = $request->title;
@@ -66,7 +67,7 @@ class SubMediaController extends Controller
         return view('admin.sub_media.edit', compact('medias', 'sub_media'));
     }
 
-    public function update(Request $request)
+    public function update(EditSubMediaRequest $request)
     {
         $sub_media = Submedia::find($request->id);
         if ($sub_media) {
