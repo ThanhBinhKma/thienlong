@@ -7,7 +7,15 @@ Route::post('admin-handle-login', 'Admin\LoginController@handleLogin')->name('ad
 Route::post('images-delete', 'User\HomeController@deleteImage')->name('images-delete');
 Route::post('images-save', 'User\HomeController@saveImage')->name('images-save');
 
-Route::get('/', 'User\HomeController@index')->name('home');
+
+Route::group(['namespace' =>'User'],function(){
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/contact','HomeController@contact')->name('contact');
+    Route::get('/about','HomeController@about')->name('about');
+    Route::get('/service','HomeController@service')->name('service');
+    Route::get('/partner','HomeController@partner')->name('partner');
+    Route::get('/activate','HomeController@activate')->name('activate');
+});
 
 Route::group(['prefix' => 'system-admin', 'namespace' => 'Admin', 'middleware' => 'adminLogin'], function () {
     Route::get('/', 'DashboardController@index')->name('system_admin.dashboard');

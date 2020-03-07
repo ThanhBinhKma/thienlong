@@ -24,8 +24,14 @@
     .hd-menu ul li:hover{border-bottom:none}
     .dsevt ul li .lstevct h3 a{font-size: 22px;line-height: 1;}
     .top-event .hgtcl ._gtcl ul li p{margin-top:0;}
-    }
-    @media(max-width: 736px) {
+    ._aprtnr{grid-template-columns: 25% 25% 25% 25%;}
+    .itev-txt{padding: 7px 5px;}
+    .itev-txt p{height: 126px; overflow-y: auto;}
+    .itev-txt h3{padding-bottom: 5px;}
+    .itev-txt a{bottom: 10px;right: 15px;}
+    .aitev-ct ._gtcl{border: none;height: none;}
+}
+@media(max-width: 736px) {
     .ait-ev{grid-template-columns:50% 50%}
     ._imgprsnnl{width:78px;height:auto}
     ._ctiprsnnl{width:139px}
@@ -36,10 +42,13 @@
     ._ntcntct{display:none}
     .hgtcl{padding-left: 0;margin-top: 20px;}
     .dsevt ul li .lstevct p{overflow-y: auto;}
-    }
-    @media(max-width:414px) {
+}
+@media(max-width:414px) {
     ._aprtnr{grid-template-columns:50% 50%}
     .itsocial{display:block}
     ._prtnrcl{grid-template-columns:50% 50%}
     ._lstev{padding: 45px 0 60px;}
+    ._evtop .aitev-ct{display: block;}
+    .aitev-ct ._gtcl{padding-left: 0;margin-top: 20px;}
+    .ait-ev{margin:0 -10px 20px;}
 }
