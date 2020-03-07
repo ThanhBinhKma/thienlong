@@ -8,7 +8,7 @@
       {{ csrf_field() }}
       @if ($errors->all())
         <div class="note note-danger"><p>Vui lòng điền đầy đủ thông tin</p></div>
-      @else 
+      @else
         <div class="note note-success"><p>Bạn đang tạo trang mới</p></div>
       @endif
       <div class="row">
@@ -17,23 +17,23 @@
             <ul class="nav nav-tabs ">
               <li class="nav-item">
                 <a href="#tab_detail" class="nav-link active show" data-toggle="tab">Chi tiết trang</a>
-              </li>      
+              </li>
             </ul><!-- end.nav-tabs -->
             <div class="tab-content">
               <div class="tab-pane active show" id="tab_detail">
                 <div class="form-group">
                   <label for="title" class="control-label required">Tên thành viên</label>
-                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120" name="name_member" type="text" id="title" value="{{ old('title') }}">
-                  @if ($errors->first('title')) 
-                    <div class="error">{{ $errors->first('title') }}</div>
+                  <input class="form-control" placeholder="Nhập tên thành viên" data-counter="120" name="name_member" type="text" id="title" value="{{ old('title') }}">
+                  @if ($errors->first('name_member'))
+                    <div class="error">{{ $errors->first('name_member') }}</div>
                   @endif
                 </div>
 
                 <div class="form-group">
                   <label for="title" class="control-label required">Vị trí</label>
-                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120" name="position" type="text" id="title" value="{{ old('title') }}"> 
-                  @if ($errors->first('title')) 
-                    <div class="error">{{ $errors->first('title') }}</div>
+                  <input class="form-control" placeholder="Nhập vị trí" data-counter="120" name="position" type="text" id="title" value="{{ old('title') }}">
+                  @if ($errors->first('position'))
+                    <div class="error">{{ $errors->first('position') }}</div>
                   @endif
                 </div>
 
@@ -75,7 +75,7 @@
                   <option value="1" selected="selected">Đã kích hoạt</option>
                   <option value="0">Đã vô hiệu</option>
                 </select>
-                @if ($errors->first('status')) 
+                @if ($errors->first('status'))
                   <div class="error">{{ $errors->first('status') }}</div>
                 @endif
               </div>
@@ -99,7 +99,7 @@
                      <i class="fa fa-picture-o"></i> Chọn hình ảnh
                    </a>
                 </div>
-                @if ($errors->first('thumbnail')) 
+                @if ($errors->first('thumbnail'))
                   <div class="error">{{ $errors->first('thumbnail') }}</div>
                 @endif
               </div>
