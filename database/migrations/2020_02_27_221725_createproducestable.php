@@ -16,8 +16,10 @@ class Createproducestable extends Migration
         Schema::create('produces', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('slug');
             $table->date('date');
             $table->string('link');
+            $table->string('avatar');
             $table->integer('status');
             $table->timestamps();
         });

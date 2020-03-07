@@ -2,38 +2,50 @@
 @section('title','Chỉnh sửa trang')
 @section('content')
   <section class="content">
-    
+
     <div class="clearfix"></div>
-    <form method="POST" action="">
+    <form method="POST" action="{{route('system_admin.member.update',['id'=>$member->id])}}">
        @method('PUT')
       {{ csrf_field() }}
-    
+        @if ($errors->all())
+            <div class="note note-danger"><p>Vui lòng điền đầy đủ thông tin</p></div>
+        @else
+            <div class="note note-success"><p>Bạn đang tạo trang mới</p></div>
+        @endif
+
       <div class="row">
         <div class="col-md-9">
           <div class="tabbable-custom">
             <ul class="nav nav-tabs ">
               <li class="nav-item">
                 <a href="#tab_detail" class="nav-link active show" data-toggle="tab">Chi tiết trang</a>
-              </li>      
+              </li>
             </ul><!-- end.nav-tabs -->
             <div class="tab-content">
               <div class="tab-pane active show" id="tab_detail">
                 <div class="form-group">
                   <label for="title" class="control-label required">Tên thành viên</label>
                   <input class="form-control" placeholder="Nhập tên trang" data-counter="120" name="name_member" type="text" id="title" value="{{ $member->name }}" readonly>
-                  @if ($errors->first('title')) 
+                  @if ($errors->first('title'))
                     <div class="error">{{ $errors->first('title') }}</div>
                   @endif
-                </div>            
+                </div>
                 <div class="form-group">
                   <label for="title" class="control-label required">Vị trí</label>
                   <input class="form-control" placeholder="Nhập password" data-counter="120" name="position" type="text" id="title" value="{{ $member->position }}">
-                  @if ($errors->first('content')) 
+                  @if ($errors->first('content'))
                     <div class="error">{{ $errors->first('content') }}</div>
                   @endif
                 </div>
 
-            
+                <div class="form-group">
+                  <label for="title" class="control-label required">Lựa chọn vị trí</label>
+                  <select name="position_id" id="" class="form-control">
+                    <option value="1" {{$member->position_id == 1 ? 'selected' : ''}}>Giám đốc</option>
+                    <option value="2" {{$member->position_id == 2 ? 'selected' : ''}}>Nhân viên</option>
+                  </select>
+                </div>
+
               </div>
             </div><!-- end.tab-content -->
           </div>
@@ -64,7 +76,7 @@
                   <option value="1" {{$member->status == 1 ? 'selected' : ''}}>Đã kích hoạt</option>
                   <option value="0" {{$member->status == 0 ? 'selected' : ''}}>Đã vô hiệu</option>
                 </select>
-                @if ($errors->first('status')) 
+                @if ($errors->first('status'))
                   <div class="error">{{ $errors->first('status') }}</div>
                 @endif
               </div>
@@ -110,14 +122,13 @@
   </section>
 @stop
 @section('addjs')
-  <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
   <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
   <script type="text/javascript">
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
       checkboxClass: 'icheckbox_minimal-blue',
       radioClass   : 'iradio_minimal-blue'
     })
-
+    $('#lfm').filemanager('image');
     @if(session('status_update'))
       swal(
         'Thành công!',

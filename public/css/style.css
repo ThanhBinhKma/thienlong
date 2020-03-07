@@ -75,3 +75,21 @@ p.payment_text{
 li.hihi {
     list-style: none;
 }
+button.add_submedia{
+	width: 30px;
+	height: 30px;
+	background: #3c8dbc;
+	border: none;
+	color: #fff;
+}
+button.delete_submedia{
+	width: 30px;
+	height: 30px;
+	background: red;
+	border: none;
+	color: #fff;
+	margin-left:10px;
+}
+.display-none{
+	display: none;
+}

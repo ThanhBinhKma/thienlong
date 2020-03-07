@@ -35,7 +35,15 @@
                   @if ($errors->first('title')) 
                     <div class="error">{{ $errors->first('title') }}</div>
                   @endif
-                </div>        
+                </div>
+
+                <div class="form-group">
+                  <label for="title" class="control-label required">Lựa chọn vị trí</label>
+                  <select name="position_id" id="" class="form-control">
+                    <option value="1">Giám đốc</option>
+                    <option value="2">Nhân viên</option>
+                  </select>
+                </div>
 
               </div>
             </div><!-- end.tab-content -->

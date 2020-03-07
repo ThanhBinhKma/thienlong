@@ -2,6 +2,6 @@
   <div class="pull-right hidden-xs">
     <b>Version</b> 2.4.0
   </div>
-  <strong>Copyright &copy; 2016- {{ date('Y') }} <a href="https://beetechsoft.com/">BeetechSoft Company z</a>.</strong> All rights
+  <strong>Copyright &copy; 2016- {{ date('Y') }} <a href="https://beetechsoft.com/">Phi Long Media</a>.</strong> All rights
   reserved.
 </footer>

@@ -1,87 +1,120 @@
+$('#owl-hotel-offers').owlCarousel({
+    items:3,
+    loop:true,
+    margin:10,
+    loop: true,
+    autoplay: true,
+    nav : true,
+    navText:['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>']
+});
+$('#owl-tour-offers').owlCarousel({
+    items:3,
+    loop:true,
+    margin:30,
+    loop: true,
+    autoplay: true,
+    nav : true,
+    navText:['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>']
+});
 
-(function ($) {
-    "use strict";
+$('.flexslider').flexslider({
+    animation: "slide",
+    flexDirectionNav: false,
+    controlNav: false,
+});
+    // Cache Selectors
+    var mainWindow      =$(window),
+    mainDocument    =$(document),
+    myLoader        =$(".loader"),
+    myNav           =$(".main-navbar"),
+    mytopBar        =$('#top-bar'),
+    searchBtn       =$(".search-button"),
+    closeBtn        =$("#close-button"),
+    closeButn       =$("#closebtn"),
+    menuBtn         =$("#menu-button"),
+    mySidenav       =$("#mySidenav"),
+    overlay         =$(".overlay");
 
 
-    /*==================================================================
-    [ Focus input ]*/
-    $('.input100').each(function(){
-        $(this).on('blur', function(){
-            if($(this).val().trim() != "") {
-                $(this).addClass('has-val');
-            }
-            else {
-                $(this).removeClass('has-val');
-            }
-        })    
-    })
-  
-  
-    /*==================================================================
-    [ Validate ]*/
-    var input = $('.validate-input .input100');
-
-    $('.validate-form').on('submit',function(){
-        var check = true;
-
-        for(var i=0; i<input.length; i++) {
-            if(validate(input[i]) == false){
-                showValidate(input[i]);
-                check=false;
-            }
-        }
-
-        return check;
+    // Loader
+    mainWindow.on('load', function () {
+    myLoader.fadeOut("slow");
     });
 
 
-    $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
-           hideValidate(this);
-        });
+    myNav.affix({
+    offset: { 
+    top: function() { return mytopBar.height(); }
+    }
     });
 
-    function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-            if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-                return false;
-            }
-        }
-        else {
-            if($(input).val().trim() == ''){
-                return false;
-            }
-        }
-    }
-
-    function showValidate(input) {
-        var thisAlert = $(input).parent();
-
-        $(thisAlert).addClass('alert-validate');
-    }
-
-    function hideValidate(input) {
-        var thisAlert = $(input).parent();
-
-        $(thisAlert).removeClass('alert-validate');
-    }
-    
-    /*==================================================================
-    [ Show pass ]*/
-    var showPass = 0;
-    $('.btn-show-pass').on('click', function(){
-        if(showPass == 0) {
-            $(this).next('input').attr('type','text');
-            $(this).addClass('active');
-            showPass = 1;
-        }
-        else {
-            $(this).next('input').attr('type','password');
-            $(this).removeClass('active');
-            showPass = 0;
-        }
-        
+    searchBtn.click(
+    function(){
+    overlay.css('transform','translateY(0%)');
     });
 
+    closeBtn.click(
+    function(){
+    overlay.css('transform','translateY(-120%)');
+    });
 
-})(jQuery);
+    menuBtn.on('click',
+    function(){
+    mySidenav.css('transform','translateX(0%)');
+    });
+
+    closeButn.on('click',
+    function(){
+    mySidenav.css('transform','translateX(120%)');
+    });
+
+$('.feature-slider').not('.slick-initialized').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  fade: true,
+  asNavFor: '.feature-slider-nav',
+  autoplay: true,
+  autoplaySpeed: 4000,
+  adaptiveHeight: true
+});
+
+
+$('.feature-slider-nav').not('.slick-initialized').slick({
+  centerMode: false,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  focusOnSelect: true,
+  asNavFor: '.feature-slider',
+  autoplay: true,
+  autoplaySpeed: 4000,
+  adaptiveHeight: true,
+  infinite:true,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 2
+      }
+    }
+  ]
+});
+
+var video     = $('.popup-youtube');
+
+
+//Magnific Video 
+video.magnificPopup({
+  disableOn: 700,
+  type: 'iframe',
+  mainClass: 'mfp-fade',
+  removalDelay: 160,
+  preloader: false,
+  fixedContentPos: false
+});

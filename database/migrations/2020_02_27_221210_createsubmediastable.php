@@ -17,6 +17,7 @@ class Createsubmediastable extends Migration
             $table->increments('id');
             $table->integer('media_id');
             $table->string('title');
+            $table->string('slug');
             $table->string('link');
             $table->integer('status');
             $table->timestamps();

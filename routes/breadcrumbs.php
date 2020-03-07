@@ -7,25 +7,27 @@
 /**
 * Faqs
 */
-
+Breadcrumbs::for('home', function ($trail) {
+    $trail->push('Trang chủ');
+});
 
 
 // Home > Blog > Bài viết
-Breadcrumbs::for('posts', function ($trail) {
+Breadcrumbs::for('event', function ($trail) {
     $trail->parent('home');
-    $trail->push('Bài viết');
+    $trail->push('Sự kiện');
 });
 
 // Home > Blog > Create new post
-Breadcrumbs::for('addpost', function ($trail) {
+Breadcrumbs::for('addevent', function ($trail) {
     $trail->parent('home');
-    $trail->push('Create new post');
+    $trail->push('Tạo sự kiện');
 });
 
 // Home > Blog > Edit Post
-Breadcrumbs::for('editpost', function ($trail) {
+Breadcrumbs::for('editevent', function ($trail) {
     $trail->parent('home');
-    $trail->push('Edit Post');
+    $trail->push('Sửa sự kiện');
 });
 
 // Home > Categories

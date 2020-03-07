@@ -36,6 +36,7 @@
   {{-- <link rel="stylesheet" href="css/sweetalert.css"> --}}
   <link rel="stylesheet" href="css/sweetalert2.min.css">
   <link rel="stylesheet" href="vendor/select2/select2.min.css">
+  <link rel="stylesheet" href="css/style.css">
   @yield('addcss')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -80,29 +81,28 @@
 	<script src="{{ asset('bower_components/ckeditor/ckeditor.js') }}"></script>
 
 	<script>
-	  var options = {
-	    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-	    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-	    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-	    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
-      entities: false,
-      basicEntities: false,
-      entities_greek: false,
-      entities_latin: false,
-	  };
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+            entities: false,
+            basicEntities: false,
+            entities_greek: false,
+            entities_latin: false,
+        };
 	</script>
-	{{-- <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script> --}}
-	{{-- <script src="vendor/laravel-filemanager/js/stand-alone-button.js"></script> --}}
-	{{-- <script>
+	 <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+	 <script src="vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+	 <script>
 		CKEDITOR.replace('content', options);
-	</script> --}}
+	</script>
 	 
 
 	<script src="dist/js/demo.js"></script>
 	<script src="js/sweetalert2.min.js"></script>
-	{{-- <script src="js/app.js"></script> --}}
+	 {{--<script src="js/app.js"></script>--}}
 	<script src="js/admin_core.js"></script>
-	<script src="js/dropzone-config.js"></script>
 	
 	@yield('addjs')
 </body>

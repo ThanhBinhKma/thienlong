@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','Quản lý Trang')
+@section('title','Quản lí thành viên')
 @section('content')
   @php
     $request = request();
@@ -18,34 +18,17 @@
             <form action="" method="GET">
               @csrf
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-5">
                   <div class="form-group">
                     <input type="text" name="keyword" class="form-control" id="keyword" placeholder="Nhập từ khóa tìm kiếm : Tên tài khoản..." @if($request->has('keyword')) value="{{ $request->keyword}}" @endif>
                   </div>
                 </div>
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <select name="social" class="form-control" id="status">
-                      <option value="">-Chọn mạng xã hội-</option>
-                      <option value="1" @if($request->has('social') && $request->social == 1) selected @endif>Facebook</option>
-                      <option value="2" @if($request->has('social') && $request->social == 2) selected @endif>Twitter</option>
-                    </select>
-                  </div>
-                </div>
+        
 
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <select name="sort" class="form-control" id="status">
-                      <option value="">-Sắp xếp theo-</option>
-                      <option value="1" @if($request->has('social') && $request->sort == 1) selected @endif>Lượt Like</option>
-                      <option value="2" @if($request->has('social') && $request->sort == 2) selected @endif>Ngày Đăng Mới Nhất</option>
-                      <option value="3" @if($request->has('social') && $request->sort == 3) selected @endif>Ngày Đăng Cũ Nhất</option>
-                    </select>
-                  </div>
-                </div>
+              
 
 
-                <div class="col-md-2">
+                <div class="col-md-5">
                   <div class="form-group">
                     <select name="status" class="form-control" id="status">
                       <option value="">-Chọn trạng thái-</option>
@@ -146,7 +129,7 @@
                       <td>
                         {{$member->position}}
                       </td>
-                      <td> {!! \App\Helpers\Common::checkStatusPost($member->status) !!} </td>
+                      <td> {!! \App\Helpers\Common::checkStatus($member->status) !!} </td>
                       <td> {{ \Carbon\Carbon::parse($member->created_at)->format('d/m/Y H:i:s')}}</td>
                       <td>
                          <a href="{{route('system_admin.member.edit',['id'=>$member->id])}}" class="btn btn-icon btn-sm btn-warning tip">
@@ -155,7 +138,7 @@
                         <a href="http://darianculbert.com/blog/32/le-hoi-nguoi-cham" class="btn btn-icon btn-sm btn-primary tip">
                           <i class="fa fa-eye"></i>
                         </a>
-                        <a href="javascript:void(0);" data-id="32" class="btn btn-icon btn-sm btn-danger deleteDialog tip">
+                        <a href="javascript:void(0);" data-id="{{$member->id}}" class="btn btn-icon btn-sm btn-danger deleteDialog tip">
                           <i class="fa fa-trash"></i>
                         </a>
                       </td>
@@ -183,4 +166,24 @@
       </div>
     </div>
   </section>
+@stop
+
+@section('addjs')
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.deleteDialog').on('click', function() {
+        var post_id = $(this).attr('data-id');
+        destroy( post_id , '{{ route('system_admin.member.destroy') }}' , '{{ route('system_admin.member.index') }}' , "Bạn muốn xóa bài đăng này!" );
+      }); 
+    });
+    $('.grid-batch-0').on('click', function() {
+      destroyAll( '{{ route('system_admin.member.destroyAll') }}' , '{{ route('system_admin.member.index') }}' , "Bạn muốn xóa các bài đăng đã chọn?" );
+    });
+    $('.grid-batch-1').on('click', function() {
+      restore( '{{ route('system_admin.member.restore') }}' , '{{ route('system_admin.member.index') }}' , "Bạn muốn phục hồi các bài đăng đã chọn?" );
+    });
+    $('.grid-refresh').click(function(){
+      location.reload(true);
+    });
+  </script>
 @stop
