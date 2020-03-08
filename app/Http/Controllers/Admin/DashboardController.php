@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\Member;
+use App\Models\Partner;
 use App\Http\Controllers\Controller;
-use App\Models\Account;
-use App\Models\Post;
 class DashboardController extends Controller
 {
 
@@ -16,8 +16,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-    	// $countAccount = Account::all();
-    	// $countPost = Post::all();
-        return view('admin.index');
+    	$partners = Partner::all();
+    	$members  = Member::all();
+    	$events = Event::all();
+        return view('admin.index',compact('partners','members','events'));
     }
 }

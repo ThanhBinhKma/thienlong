@@ -19,7 +19,7 @@
                         <li><a href="{{route('home')}}">Trang chủ</a></li>
                         <li><a href="{{route('activate')}}">Hoạt động</a></li>
                         <li><a href="{{route('partner')}}">Đối tác</a></li>
-                        <li><a href="{{route('service')}}">Dịch vụ</a></li>
+                        <li><a href="{{route('list-event')}}">Dịch vụ</a></li>
                         <li><a href="{{route('contact')}}">Liên hệ</a></li>
                         <li><a href="{{route('about')}}">Về chúng tôi</a></li>
                     </ul>

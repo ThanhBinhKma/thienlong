@@ -5,7 +5,7 @@
     $request = request();
   @endphp
   <section class="content dataTables_wrapper">
-    {{ Breadcrumbs::render('event') }}
+    {{ Breadcrumbs::render('partner') }}
     <div class="clearfix"></div>
     @if (session('status_store'))
       <div class="note note-success"><p>{{ session('status_store') }}</p></div>

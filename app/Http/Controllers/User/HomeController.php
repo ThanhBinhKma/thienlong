@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Event;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,9 +18,19 @@ class HomeController extends Controller
     {
         $members = Member::select('name','avatar','position','position_id')->get();
         $partners = Partner::select('avatar')->get();
-        return view('front_end.index',compact('members','partners'));
+        $events = Event::select('avatar','title','description','slug')->get();
+        return view('front_end.index',compact('members','partners','events'));
     }
 
+    public function eventDetail($slug){
+        $event = Event::where('slug',$slug)->first();
+        return view('front_end.event.detail',compact('event'));
+    }
+
+    public function listEvent(){
+        $events = Event::select('avatar','title','description','slug')->paginate(6);
+        return view('front_end.event.show',compact('events'));
+    }
     public function contact()
     {
         return view('front_end.contact.index');
@@ -37,7 +48,8 @@ class HomeController extends Controller
 
     public function partner()
     {
-        return view('front_end.partner.index');
+        $partners = Partner::all();
+        return view('front_end.partner.index',compact('partners'));
     }
 
     public function activate()

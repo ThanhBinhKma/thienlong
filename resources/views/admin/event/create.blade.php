@@ -36,6 +36,12 @@
                 </div>
 
                 <div class="form-group">
+                  <label for="title" class="control-label required">Mô tả</label>
+                  <input class="form-control" placeholder="Nhập mô tả sự kiện" data-counter="120"
+                         name="description" type="text" value="{{ old('description') }}">
+                </div>
+
+                <div class="form-group">
                   <label for="title" class="control-label required">Địa điểm</label>
                   <input class="form-control" placeholder="Nhập địa điểm diễn ra sự kiện" data-counter="120" name="place" type="text" id="title" value="{{ old('place') }}">
                   @if ($errors->first('place'))
@@ -49,12 +55,6 @@
                     <div class="error">{{ $errors->first('content') }}</div>
                   @endif
                 </div>
-
-                <div class="form-group">
-                  <label for="description" class="control-label">Cruise Gallery</label>
-                  <div class="dropzone dropzone-previews" name="" id="my-awesome-dropzone"></div>
-                </div>
-                <input type="hidden" name="images" id="cruise_gallery" >
               </div>
             </div><!-- end.tab-content -->
           </div>
@@ -126,7 +126,7 @@
   <script type="text/javascript">
     $('#lfm').filemanager('image');
     $('#date').datepicker({
-        format: 'yyyy-mm-dd',
+        format: 'yyyy-mm',
     });
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
       checkboxClass: 'icheckbox_minimal-blue',

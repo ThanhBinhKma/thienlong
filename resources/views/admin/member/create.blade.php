@@ -2,7 +2,7 @@
 @section('title','Thêm trang mới')
 @section('content')
   <section class="content">
-{{--     {{ Breadcrumbs::render('addpage') }} --}}
+     {{ Breadcrumbs::render('addmember') }}
     <div class="clearfix"></div>
     <form method="POST" action="{{route('system_admin.member.store')}}">
       {{ csrf_field() }}

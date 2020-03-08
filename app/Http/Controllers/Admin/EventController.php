@@ -19,7 +19,7 @@ class EventController extends Controller
         $status = $request->status;
 
         try {
-            $conditions = Event::select('events.id', 'events.title', 'events.avatar', 'events.date', 'events.status', 'events.created_at');
+            $conditions = Event::select('events.id', 'events.title', 'events.avatar', 'events.description', 'events.date', 'events.status', 'events.created_at');
             if (isset($status)) {
                 $conditions = $conditions->where('events.status', '=', $status);
             }
@@ -48,17 +48,11 @@ class EventController extends Controller
         $event->date = $request->date;
         $event->status = $request->status;
         $event->place = $request->place;
-        $event->description = $request->content;
+        $event->description = $request->description;
+        $event->content = $request->content;
+        $event->slug = str_slug($request->title, '-');
         $event->avatar = $request->thumbnail;
         $event->save();
-        $images = json_decode($request->images);
-        foreach ($images as $image) {
-            $im = new Image();
-            $im->link = $image;
-            $im->event_id = $event->id;
-            $im->status = 1;
-            $im->save();
-        }
         return redirect()->route('system_admin.event.index');
     }
 
@@ -66,8 +60,7 @@ class EventController extends Controller
     {
 
         $event = Event::find($id);
-        $images = Image::where('event_id', $id)->get();
-        return view('admin.event.edit', compact('event', 'images'));
+        return view('admin.event.edit', compact('event'));
     }
 
     public function update(EditEvenRequest $request)
@@ -79,18 +72,12 @@ class EventController extends Controller
                 'date' => $request->date,
                 'place' => $request->place,
                 'status' => $request->status,
-                'description ' => $request->content,
+                'description ' => $request->description,
+                'content' => $request->content,
+                'slug' => str_slug($request->title, '-'),
                 'avatar' => $request->thumbnail
             ];
-           $image = Image::where('event_id',$request->id)->delete();
-            $images = json_decode($request->images);
-            foreach ($images as $image) {
-                $im = new Image();
-                $im->link = $image;
-                $im->event_id = $event->id;
-                $im->status = 1;
-                $im->save();
-            }
+            $event->update($data);
             return redirect()->route('system_admin.event.index')->with(['status_update' => 'Cập nhật bài đăng thành công!']);
         }
     }

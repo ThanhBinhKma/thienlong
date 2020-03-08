@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="descrioption" content="Công ty Cổ phần Truyền thông Đa phương tiện Phi Long (Phi Long Multimedia., JSC) tiền thân là một ekip sáng tạo nội dung và tổ chức sự kiện từng kết hợp với nhiều đơn vị uy tín tại Việt Nam.">
+    <meta name=”robots” content=”noodp,index,follow” />
+    <meta http-equiv=”content-language” content=”vi” />
+    <meta name=”author” content=”philongmedia.com” />
+    <meta name=”copyright” content=”copyright &copy; 2020 by philongmedia.com” />
+    <meta http-equiv=”Content-Type” content=”text/html; charset=utf-8″ />
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/animation.css')}}">

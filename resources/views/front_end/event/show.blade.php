@@ -1,21 +1,43 @@
 @extends('front_end.layout.master')
-@section('title','Đối tác')
+@section('title','Dịch vụ')
 @section('content')
     <div class="top-event">
         <div class="container">
             <div class="_lstev">
                 <div class="_tith1">
-                    <h1>đối tác chiến lược</h1>
+                    <h1>Dịch vụ</h1>
+                    <p>Phi Long hoạt động với nhiều lĩnh vực gồm cung cấp dịch vụ: quảng cáo, marketing, posm,... cho
+                        nhãn hàng và hoạt động trong các lĩnh vực: <span>Truyền thông - Quảng cáo - Tổ chức sự kiện - Sản xuất
+                            film</span> có quan hệ đối tác trực tiếp với các đơn vị Truyền hình, Phát thanh, Quảng cáo
+                        ngoài
+                        trời, Báo in, Báo mạng, Mạng viễn thông,... và các đơn vị, cá nhân, tổ chức hàng đầu Việt Nam
+                        trong lĩnh
+                        vực sản xuất, tổ chức các chương trình, sản phẩm truyền thông, giải trí.
+                    </p>
                 </div>
                 <div class="lstev">
-                    <div class="_prtnrcl">
-                        @if(count($partners) > 0)
-                            @foreach($partners as $partner)
-                            <div class="_itprtnr">
-                                <a href="{{$partner->link}}"><img src="{{$partner->avatar}}" alt=""></a>
-                            </div>
-                            @endforeach
-                        @endif
+                    <div class="dsevt">
+                        <div class="_listsk">
+                            <ul>
+                                @if(count($events) > 0 )
+                                    @foreach($events as $event)
+                                    <li>
+                                        <div class="lstevimg">
+                                            <img src="{{$event->avatar}}" alt="">
+                                        </div>
+                                        <div class="lstevct">
+                                            <h3><a href="{{route('detail-event',['slug'=>$event->slug])}}">{{$event->title}}</a></h3>
+                                            <p>{{$event->description}}</p>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                @endif
+
+                            </ul>
+                        </div>
+                        <div class="clcknxt">
+                            {{$events->links()}}
+                        </div>
                     </div>
                     <div class="hgtcl">
                         <div class="_gtcl">

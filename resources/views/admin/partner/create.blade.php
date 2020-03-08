@@ -2,7 +2,7 @@
 @section('title','Thêm trang mới')
 @section('content')
   <section class="content">
-     {{ Breadcrumbs::render('addevent') }}
+     {{ Breadcrumbs::render('addpartner') }}
     <div class="clearfix"></div>
     <form method="POST" action="{{route('system_admin.partner.store')}}">
       {{ csrf_field() }}

@@ -42,9 +42,15 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="title" class="control-label required">Mô tả</label>
+                                    <input class="form-control" placeholder="Nhập mô tả sự kiện" data-counter="120"
+                                           name="description" type="text" value="{{ $event->description }}">
+                                </div>
+
+                                <div class="form-group">
                                     <label for="title" class="control-label required">Địa điểm</label>
                                     <input class="form-control" placeholder="Nhập địa điểm diễn ra sự kiện" data-counter="120"
-                                           name="place" type="text" id="title" value="{{ $event->date }}">
+                                           name="place" type="text" id="date" value="{{ $event->date }}">
                                     @if ($errors->first('date'))
                                         <div class="error">{{ $errors->first('date') }}</div>
                                     @endif
@@ -53,17 +59,11 @@
                                 <div class="form-group box-body pad">
                                     <textarea class="high" rows="10" placeholder="Nội dung trang" data-counter="400"
                                               name="content" cols="50"
-                                              id="content">{!! $event->description !!}</textarea>
+                                              id="content">{!! $event->content !!}</textarea>
                                     @if ($errors->first('content'))
                                         <div class="error">{{ $errors->first('content') }}</div>
                                     @endif
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="description" class="control-label">Cruise Gallery</label>
-                                    <div class="dropzone dropzone-previews" name="" id="my-awesome-dropzone"></div>
-                                </div>
-                                <input type="hidden" name="images" id="cruise_gallery">
                             </div>
                         </div>
                     </div><!-- end.tab-content -->
@@ -151,72 +151,10 @@
         $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass: 'iradio_minimal-blue'
-        })
-        $('#lfm').filemanager('image');
-        @if(session('status_update'))
-swal(
-            'Thành công!',
-            'Chỉnh sửa trang thành công!',
-            'success'
-        )
-        @endif
-            Dropzone.autoDiscover = false;
-        var cruise_gallery = [];
-        jQuery(document).ready(function() {
-            $("div#my-awesome-dropzone").dropzone({
-                url: "/system-admin/upload-image",
-                acceptedFiles: "image/*",
-                addRemoveLinks: true,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                init: function () {
-                            @if(count($images) > 0)
-                            @foreach($images as $image)
-                    var myDropzone = this;
-                    var mockFile = {
-                        name: '{{explode('/', $image->link)[3]}}',
-                        size: 120
-                    };
-                    // Call the default addedfile event handler
-                    myDropzone.options.addedfile.call(myDropzone, mockFile);
-                    myDropzone.options.thumbnail.call(myDropzone, mockFile, '{{$image->link}}');
-                    cruise_gallery.push('{{$image->link}}');
-                    $('#cruise_gallery').val(JSON.stringify(cruise_gallery));
-                    @endforeach
-             @endif
-                $('#cruise_gallery').val(JSON.stringify(cruise_gallery));
-                },
-                success: function (file, response) {
-                    cruise_gallery.push(response);
-                    $('#cruise_gallery').val(JSON.stringify(cruise_gallery));
-                },
-                removedfile: function (file) {
-
-                    var name = file.name;
-                    console.log(file);
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type: 'POST',
-                        url: '/system-admin/delete-image',
-                        data: {filename: name, cruise_id: $('[name="cruise_id"]').val()},
-                        success: function (data) {
-                            cruise_gallery = [];
-                            $('#my-awesome-dropzone .dz-image img').each(function () {
-                                cruise_gallery.push($(this).attr('alt'));
-                            });
-                            $('#cruise_gallery').val(JSON.stringify(cruise_gallery));
-                        },
-                        error: function (e) {
-                        }
-                    });
-                    var fileRef;
-                    return (fileRef = file.previewElement) != null ?
-                        fileRef.parentNode.removeChild(file.previewElement) : void 0;
-                },
-            });
         });
+        $('#date').datepicker({
+            format: 'yyyy-mm',
+        });
+        $('#lfm').filemanager('image');
     </script>
 @stop

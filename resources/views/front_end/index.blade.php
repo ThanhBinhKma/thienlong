@@ -1,5 +1,5 @@
 @extends('front_end.layout.master')
-@section('title','Thiên Long Media')
+@section('title','Phi Long Media')
 @section('content')
     <div class="top-event">
         <div class="container">
@@ -10,75 +10,23 @@
                 <div class="aitev-ct">
                     <div class="lst-itev">
                         <div class="ait-ev">
-                            <div class="it-ev">
-                                <div class="itev-img">
-                                    <a href="#"><img src="{{asset('images/sk6.jpg')}}" alt=""></a>
-                                </div>
-                                <div class="itev-txt">
-                                    <h3>Thái Bình trọn niềm vui</h3>
-                                    <p>Nhiều nghệ sĩ nổi tiếng của Việt Nam đã về Thái Bình tham gia chương trình nghệ
-                                        thuật đón năm mới Canh Tý 2020</p>
-                                    <a href="#">Xem thêm<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                            <div class="it-ev">
-                                <div class="itev-img">
-                                    <a href="#"><img src="{{asset('images/sk6.jpg')}}" alt=""></a>
-                                </div>
-                                <div class="itev-txt">
-                                    <h3>Thái Bình trọn niềm vui</h3>
-                                    <p>Nhiều nghệ sĩ nổi tiếng của Việt Nam đã về Thái Bình tham gia chương trình nghệ
-                                        thuật đón năm mới Canh Tý 2020</p>
-                                    <a href="#">Xem thêm<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                            <div class="it-ev">
-                                <div class="itev-img">
-                                    <a href="#"><img src="{{asset('images/sk6.jpg')}}" alt=""></a>
-                                </div>
-                                <div class="itev-txt">
-                                    <h3>Thái Bình trọn niềm vui</h3>
-                                    <p>Nhiều nghệ sĩ nổi tiếng của Việt Nam đã về Thái Bình tham gia chương trình nghệ
-                                        thuật đón năm mới Canh Tý 2020</p>
-                                    <a href="#">Xem thêm<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                            <div class="it-ev">
-                                <div class="itev-img">
-                                    <a href="#"><img src="{{asset('images/sk6.jpg')}}" alt=""></a>
-                                </div>
-                                <div class="itev-txt">
-                                    <h3>Thái Bình trọn niềm vui</h3>
-                                    <p>Nhiều nghệ sĩ nổi tiếng của Việt Nam đã về Thái Bình tham gia chương trình nghệ
-                                        thuật đón năm mới Canh Tý 2020</p>
-                                    <a href="#">Xem thêm<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                            <div class="it-ev">
-                                <div class="itev-img">
-                                    <a href="#"><img src="{{asset('images/sk6.jpg')}}" alt=""></a>
-                                </div>
-                                <div class="itev-txt">
-                                    <h3>Thái Bình trọn niềm vui</h3>
-                                    <p>Nhiều nghệ sĩ nổi tiếng của Việt Nam đã về Thái Bình tham gia chương trình nghệ
-                                        thuật đón năm mới Canh Tý 2020</p>
-                                    <a href="#">Xem thêm<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                            <div class="it-ev">
-                                <div class="itev-img">
-                                    <a href="#"><img src="{{asset('images/sk6.jpg')}}" alt=""></a>
-                                </div>
-                                <div class="itev-txt">
-                                    <h3>Thái Bình trọn niềm vui</h3>
-                                    <p>Nhiều nghệ sĩ nổi tiếng của Việt Nam đã về Thái Bình tham gia chương trình nghệ
-                                        thuật đón năm mới Canh Tý 2020</p>
-                                    <a href="#">Xem thêm<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
+                            @if(count($events) > 0)
+                                @foreach($events as $key => $event)
+                                    <div class="it-ev">
+                                        <div class="itev-img">
+                                            <a href="{{route('detail-event',['slug'=>$event->slug])}}"><img src="{{$event->avatar}}" alt=""></a>
+                                        </div>
+                                        <div class="itev-txt">
+                                            <h3>{{$event->title}}</h3>
+                                            <p>{{$event->description}}</p>
+                                            <a href="{{route('detail-event',['slug'=>$event->slug])}}">Xem thêm<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                         <div class="bt-alev">
-                            <a href="#">Xem thêm</a>
+                            <a href="{{route('list-event')}}">Xem thêm</a>
                         </div>
                     </div>
                     <div class="_gtcl">
@@ -170,9 +118,9 @@
                 <div class="_aprtnr">\
                     @if(count($partners) > 0)
                         @foreach($partners as $partner)
-                        <div class="_itprtnr">
-                            <a href="#"><img src="{{$partner->avatar}}" alt=""></a>
-                        </div>
+                            <div class="_itprtnr">
+                                <a href="#"><img src="{{$partner->avatar}}" alt=""></a>
+                            </div>
                         @endforeach
                     @endif
                 </div>

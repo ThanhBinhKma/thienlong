@@ -100,6 +100,7 @@
                   </th>
                   <th style="width: 150px;">Tiêu đề</th>
                   <th>Ảnh</th>
+                  <th>Mô tả</th>
                   <th>Ngày</th>
                   <th>Trạng thái</th>
                   <th>Ngày tạo</th>
@@ -121,6 +122,7 @@
                       <td style="width: 100px;">
                         <img src="{{$event->avatar}}" alt="" style="max-width: 100%">
                       </td>
+                      <td>{{$event->description}}</td>
                       <td>
                         {{$event->date}}
                       </td>
