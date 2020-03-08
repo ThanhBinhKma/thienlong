@@ -18,7 +18,7 @@ class MemberController extends Controller
         $status = $request->status;
 
         try {
-            $conditions = Member::select('members.id', 'members.name', 'members.position', 'members.avatar', 'members.status', 'members.created_at');
+            $conditions = Member::select('members.id', 'members.name', 'members.position', 'members.position_id', 'members.avatar', 'members.status', 'members.created_at');
             if (isset($status)) {
                 $conditions = $conditions->where('members.status', '=', $status);
             }

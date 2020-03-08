@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('css/lightslider.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/style_philong.css')}}">
     <link rel="stylesheet" href="{{asset('css/philongresponsive.css')}}">
-    <script src="{{asset('front_end/js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
     <link rel="shortcut icon" type="image/png" href="{{asset('images/logo-top.jpg')}}">
 </head>
 <body>

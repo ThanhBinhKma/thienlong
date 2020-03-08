@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Partner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Models\Brands;
-use App\Models\Price;
-use App\Models\Order;
+use App\Models\Member;
 use App\Models\Images;
 use DB;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +15,9 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-
-        return view('front_end.index');
+        $members = Member::select('name','avatar','position','position_id')->get();
+        $partners = Partner::select('avatar')->get();
+        return view('front_end.index',compact('members','partners'));
     }
 
     public function contact()

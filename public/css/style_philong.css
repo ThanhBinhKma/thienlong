@@ -41,7 +41,7 @@ header .hd-ct{display:grid;grid-template-columns:10% 30% 60%}
 ._aprtnr{display:grid;grid-template-columns:20% 20% 20% 20% 20%;margin:0 -10px 45px}
 .ct-prtner{text-align:center;padding:65px 0 85px}
 ._itprtnr{padding:10px 5px;border:1px solid #ece613;border-radius:10px;margin:10px;height:100px;background:#fff}
-._itprtnr a img{max-width:100%;min-height:100%;object-fit:cover}
+._itprtnr a img{max-width:100%;max-height:100%;object-fit:cover}
 ._itprtnr{overflow:hidden}
 ._itprtnr:hover a img{transform:scale(1.1,1.1);transition:all .3s linear}
 ._prtner .tit-h2 h2 a{color:#fff;padding:0}

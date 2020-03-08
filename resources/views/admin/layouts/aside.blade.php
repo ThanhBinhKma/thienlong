@@ -141,53 +141,27 @@
                                         </a>
                                     </li>
 
-                                    {{--@php--}}
-                                        {{--$arg_staff = array(--}}
-                                          {{--'system_admin.list_post.index',--}}
-                                        {{--);--}}
-                                    {{--@endphp--}}
-                                    {{--@if ( in_array($name, $arg_staff) )--}}
-                                        {{--<li class="active">--}}
-                                    {{--@else--}}
-                                        {{--<li>--}}
-                                            {{--@endif--}}
-                                            {{--<a href="{{route('system_admin.list_post.index')}}">--}}
-                                                {{--<i class="fa fa-database" aria-hidden="true"></i> <span>Liên hệ</span>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-
-
-
-                                        {{--@php--}}
-                                            {{--$arg_faq = array(--}}
-                                              {{--'system_admin.faqs.index',--}}
-                                              {{--'system_admin.faqs.create' ,--}}
-                                              {{--'system_admin.faqs.edit',--}}
-                                              {{--'system_admin.faqs_categories.index',--}}
-                                              {{--'system_admin.faqs_categories.create' ,--}}
-                                              {{--'system_admin.faqs_categories.edit'--}}
-                                            {{--);--}}
-                                        {{--@endphp--}}
-                                        {{--@if ( in_array($name, $arg_faq) )--}}
-                                            {{--<li class="treeview active">--}}
-                                        {{--@else--}}
-                                            {{--<li class="treeview">--}}
-                                                {{--@endif--}}
-                                                {{--<a href="#">--}}
-                                                    {{--<i class="fa fa-envelope" aria-hidden="true"></i>--}}
-                                                    {{--<span>Mailbox</span>--}}
-                                                    {{--<span class="pull-right-container">--}}
-            {{--<i class="fa fa-angle-left pull-right"></i>--}}
-          {{--</span>--}}
-                                                {{--</a>--}}
-                                                {{--<ul class="treeview-menu">--}}
-                                                    {{--<li>--}}
-                                                        {{--<a href="--}}{{-- {{route('system_admin.email.index')}} --}}{{--">--}}
-                                                            {{--<i class="fa fa-inbox"></i> Inbox--}}
-                                                        {{--</a>--}}
-                                                    {{--</li>--}}
-                                                {{--</ul>--}}
-                                            {{--</li>--}}
+                                    @php
+                                    $arg_staff = array(
+                                      'system_admin.partner.index',
+                           'system_admin.partner.index',
+                          'system_admin.partner.create',
+                          'system_admin.partner.store',
+                          'system_admin.partner.edit',
+                          'system_admin.partner.update',
+                          'system_admin.partner.destroy',
+                          'system_admin.partner.destroyAll',
+                                    );
+                                @endphp
+                                @if ( in_array($name, $arg_staff) )
+                                    <li class="active">
+                                @else
+                                    <li>
+                                        @endif
+                                        <a href="{{route('system_admin.partner.index')}}">
+                                            <i class="fa fa-database" aria-hidden="true"></i> <span>Đối tác</span>
+                                        </a>
+                                    </li>
         </ul>
     </section>
     <!-- /.sidebar -->

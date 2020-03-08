@@ -73,4 +73,14 @@ Route::group(['prefix' => 'system-admin', 'namespace' => 'Admin', 'middleware' =
     Route::delete('produce/destroyAll', 'ProduceController@destroyAll')->name('system_admin.produce.destroyAll');
     Route::post('produce/restory', 'ProduceController@restore')->name('system_admin.produce.restore');
 
+    //Partner
+    Route::get('partner', 'PartnerController@index')->name('system_admin.partner.index');
+    Route::get('create/partner', 'PartnerController@create')->name('system_admin.partner.create');
+    Route::post('create/partner', 'PartnerController@store')->name('system_admin.partner.store');
+    Route::get('edit/partner/{id}', 'PartnerController@edit')->name('system_admin.partner.edit');
+    Route::put('edit/partner/{id}', 'PartnerController@update')->name('system_admin.partner.update');
+    Route::delete('partner/destroy', 'PartnerController@destroy')->name('system_admin.partner.destroy');
+    Route::delete('partner/destroyAll', 'PartnerController@destroyAll')->name('system_admin.partner.destroyAll');
+    Route::post('partner/restory', 'PartnerController@restore')->name('system_admin.partner.restore');
+
 });
