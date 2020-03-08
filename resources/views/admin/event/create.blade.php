@@ -13,33 +13,33 @@
             <ul class="nav nav-tabs ">
               <li class="nav-item">
                 <a href="#tab_detail" class="nav-link active show" data-toggle="tab">Chi tiết trang</a>
-              </li>      
+              </li>
             </ul><!-- end.nav-tabs -->
             <div class="tab-content">
               <div class="tab-pane active show" id="tab_detail">
                 <div class="form-group">
                   <label for="title" class="control-label required">Tiêu đề</label>
-                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120" name="title" type="text" id="title" value="{{ old('title') }}">
-                  @if ($errors->first('title')) 
+                  <input class="form-control" placeholder="Nhập tiêu đề" data-counter="120" name="title" type="text" id="title" value="{{ old('title') }}">
+                  @if ($errors->first('title'))
                     <div class="error">{{ $errors->first('title') }}</div>
                   @endif
                 </div>
 
                 <div class="form-group">
                   <label for="title" class="control-label required">Ngày</label>
-                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
+                  <input class="form-control" placeholder="Nhập ngày diễn ra sự kiện" data-counter="120"
                          name="date" type="text" id="date" value="{{ old('title') }}"
                          autocomplete="off">
-                  @if ($errors->first('title'))
-                    <div class="error">{{ $errors->first('title') }}</div>
+                  @if ($errors->first('date'))
+                    <div class="error">{{ $errors->first('date') }}</div>
                   @endif
                 </div>
 
                 <div class="form-group">
                   <label for="title" class="control-label required">Địa điểm</label>
-                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120" name="place" type="text" id="title" value="{{ old('place') }}">
-                  @if ($errors->first('title'))
-                    <div class="error">{{ $errors->first('title') }}</div>
+                  <input class="form-control" placeholder="Nhập địa điểm diễn ra sự kiện" data-counter="120" name="place" type="text" id="title" value="{{ old('place') }}">
+                  @if ($errors->first('place'))
+                    <div class="error">{{ $errors->first('place') }}</div>
                   @endif
                 </div>
 
@@ -85,7 +85,7 @@
                   <option value="1" selected="selected">Đã kích hoạt</option>
                   <option value="0">Đã vô hiệu</option>
                 </select>
-                @if ($errors->first('status')) 
+                @if ($errors->first('status'))
                   <div class="error">{{ $errors->first('status') }}</div>
                 @endif
               </div>
@@ -109,7 +109,7 @@
                      <i class="fa fa-picture-o"></i> Chọn hình ảnh
                    </a>
                 </div>
-                @if ($errors->first('thumbnail')) 
+                @if ($errors->first('thumbnail'))
                   <div class="error">{{ $errors->first('thumbnail') }}</div>
                 @endif
               </div>

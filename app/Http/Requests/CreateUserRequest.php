@@ -26,7 +26,6 @@ class CreateUserRequest extends FormRequest
         return [
             'name_member'=>'required',
             'position'=>'required',
-            'thumbnail'=>'required',
         ];
 
     }
@@ -34,7 +33,6 @@ class CreateUserRequest extends FormRequest
         return [
             'name_member.required'=>'Tên không được để trống ',
             'position.required'=>' Vị trí không được để trống ',
-            'thumbnail.required'=>"Avatar không được để trống ",
         ];
     }
 }

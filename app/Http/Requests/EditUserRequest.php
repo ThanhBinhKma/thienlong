@@ -27,14 +27,12 @@ class EditUserRequest extends FormRequest
         return [
             'name_member'=>'required',
             'position'=>'required',
-            'thumbnail'=>'required',
         ];
     }
     public function messages() {
         return [
             'name_member.required'=>'Tên không được để trống ',
             'position.required'=>' Vị trí không được để trống ',
-            'thumbnail.required'=>"Avatar không được để trống ",
         ];
     }
 }
