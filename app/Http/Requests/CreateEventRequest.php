@@ -29,7 +29,6 @@ class CreateEventRequest extends FormRequest
             'status'=>'required',
             'place'=>'required',
             'content'=>'required',
-            'thumbnail'=>'required',
         ];
     }
     public function messages() {
@@ -39,7 +38,6 @@ class CreateEventRequest extends FormRequest
             'status.required'=>"trạng thái không được để trống ",
             'place.required'=>"Địa điểm  không được để trống ",
             'content.required'=>"nội dung không được để trống ",
-            'thumbnail.required'=>"ảnh đại diện không được để trống ",
         ];
     }
 }

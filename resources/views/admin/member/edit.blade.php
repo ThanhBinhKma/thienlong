@@ -25,16 +25,16 @@
               <div class="tab-pane active show" id="tab_detail">
                 <div class="form-group">
                   <label for="title" class="control-label required">Tên thành viên</label>
-                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120" name="name_member" type="text" id="title" value="{{ $member->name }}" readonly>
-                  @if ($errors->first('title'))
-                    <div class="error">{{ $errors->first('title') }}</div>
+                  <input class="form-control" placeholder="Nhập tên thành viên" data-counter="120" name="name_member" type="text" id="title" value="{{ $member->name }}" readonly>
+                  @if ($errors->first('name_member'))
+                    <div class="error">{{ $errors->first('name_member') }}</div>
                   @endif
                 </div>
                 <div class="form-group">
                   <label for="title" class="control-label required">Vị trí</label>
                   <input class="form-control" placeholder="Nhập password" data-counter="120" name="position" type="text" id="title" value="{{ $member->position }}">
-                  @if ($errors->first('content'))
-                    <div class="error">{{ $errors->first('content') }}</div>
+                  @if ($errors->first('position'))
+                    <div class="error">{{ $errors->first('position') }}</div>
                   @endif
                 </div>
 

@@ -24,7 +24,7 @@
                             <div class="tab-pane active show" id="tab_detail">
                                 <div class="form-group">
                                     <label for="title" class="control-label required">Tiêu đề</label>
-                                    <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
+                                    <input class="form-control" placeholder="Nhập tiêu đề" data-counter="120"
                                            name="title" type="text" id="title" value="{{ $event->title}}">
                                     @if ($errors->first('title'))
                                         <div class="error">{{ $errors->first('title') }}</div>
@@ -33,20 +33,20 @@
 
                                 <div class="form-group">
                                     <label for="title" class="control-label required">Ngày</label>
-                                    <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
+                                    <input class="form-control" placeholder="Nhập ngày diễn ra sự kiện" data-counter="120"
                                            name="date" type="text" id="date" value="{{ $event->date }}"
                                            autocomplete="off">
-                                    @if ($errors->first('title'))
-                                        <div class="error">{{ $errors->first('title') }}</div>
+                                    @if ($errors->first('date'))
+                                        <div class="error">{{ $errors->first('date') }}</div>
                                     @endif
                                 </div>
 
                                 <div class="form-group">
                                     <label for="title" class="control-label required">Địa điểm</label>
-                                    <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
+                                    <input class="form-control" placeholder="Nhập địa điểm diễn ra sự kiện" data-counter="120"
                                            name="place" type="text" id="title" value="{{ $event->date }}">
-                                    @if ($errors->first('title'))
-                                        <div class="error">{{ $errors->first('title') }}</div>
+                                    @if ($errors->first('date'))
+                                        <div class="error">{{ $errors->first('date') }}</div>
                                     @endif
                                 </div>
 
