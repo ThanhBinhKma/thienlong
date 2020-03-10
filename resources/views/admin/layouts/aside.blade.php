@@ -19,7 +19,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             @php
                 $arg_dashboard = array(
-                  'system_admin.get_dashboard'
+                  'system_admin.dashboard'
                 );
             @endphp
             @if ( in_array($name, $arg_dashboard) )
@@ -75,72 +75,7 @@
                             </a>
                         </li>
 
-                        {{--@php--}}
-                            {{--$arg_staff = array(--}}
-                              {{--'system_admin.media.index',--}}
-                           {{--'system_admin.media.index',--}}
-                          {{--'system_admin.media.create',--}}
-                          {{--'system_admin.media.store',--}}
-                          {{--'system_admin.media.edit',--}}
-                          {{--'system_admin.media.update',--}}
-                          {{--'system_admin.media.destroy',--}}
-                          {{--'system_admin.media.destroyAll',--}}
-                            {{--);--}}
-                        {{--@endphp--}}
-                        {{--@if ( in_array($name, $arg_staff) )--}}
-                            {{--<li class="active">--}}
-                        {{--@else--}}
-                            {{--<li>--}}
-                                {{--@endif--}}
-                                {{--<a href="{{route('system_admin.media.index')}}">--}}
-                                    {{--<i class="fa fa-database" aria-hidden="true"></i> <span>Truyền thông</span>--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
-
-                            {{--@php--}}
-                                {{--$arg_staff = array(--}}
-                                  {{--'system_admin.submedia.index',--}}
-                           {{--'system_admin.submedia.index',--}}
-                          {{--'system_admin.submedia.create',--}}
-                          {{--'system_admin.submedia.store',--}}
-                          {{--'system_admin.submedia.edit',--}}
-                          {{--'system_admin.submedia.update',--}}
-                          {{--'system_admin.submedia.destroy',--}}
-                          {{--'system_admin.submedia.destroyAll',--}}
-                                {{--);--}}
-                            {{--@endphp--}}
-                            {{--@if ( in_array($name, $arg_staff) )--}}
-                                {{--<li class="active">--}}
-                            {{--@else--}}
-                                {{--<li>--}}
-                                    {{--@endif--}}
-                                    {{--<a href="{{route('system_admin.submedia.index')}}">--}}
-                                        {{--<i class="fa fa-database" aria-hidden="true"></i> <span>Bài viết của truyền thông</span>--}}
-                                    {{--</a>--}}
-                                {{--</li>--}}
-
-                                {{--@php--}}
-                                    {{--$arg_staff = array(--}}
-                                      {{--'system_admin.produce.index',--}}
-                           {{--'system_admin.produce.index',--}}
-                          {{--'system_admin.produce.create',--}}
-                          {{--'system_admin.produce.store',--}}
-                          {{--'system_admin.produce.edit',--}}
-                          {{--'system_admin.produce.update',--}}
-                          {{--'system_admin.produce.destroy',--}}
-                          {{--'system_admin.produce.destroyAll',--}}
-                                    {{--);--}}
-                                {{--@endphp--}}
-                                {{--@if ( in_array($name, $arg_staff) )--}}
-                                    {{--<li class="active">--}}
-                                {{--@else--}}
-                                    {{--<li>--}}
-                                        {{--@endif--}}
-                                        {{--<a href="{{route('system_admin.produce.index')}}">--}}
-                                            {{--<i class="fa fa-database" aria-hidden="true"></i> <span>Sản phẩm</span>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-
+                       
                                     @php
                                     $arg_staff = array(
                                       'system_admin.partner.index',
@@ -162,6 +97,20 @@
                                             <i class="fa fa-database" aria-hidden="true"></i> <span>Đối tác</span>
                                         </a>
                                     </li>
+
+                                    @php
+                          $arg_staff =array('system_admin.changepass');
+                       @endphp
+                       @if(in_array($name, $arg_staff))
+                          <li class="activer"></li>
+                        @else
+                          <li>
+                                        @endif
+                                        <a href="{{route('system_admin.changepass')}}">
+                                            <i class="fa fa-database" aria-hidden="true"></i> <span>Đổi mật khẩu</span>
+                                        </a>
+                                    </li>
+                   
         </ul>
     </section>
     <!-- /.sidebar -->

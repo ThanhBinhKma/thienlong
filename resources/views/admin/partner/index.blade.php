@@ -125,9 +125,7 @@
                          <a href="{{route('system_admin.partner.edit',['id'=>$partner->id])}}" class="btn btn-icon btn-sm btn-warning tip">
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
-                        <a href="http://darianculbert.com/blog/32/le-hoi-nguoi-cham" class="btn btn-icon btn-sm btn-primary tip">
-                          <i class="fa fa-eye"></i>
-                        </a>
+                        
                         <a href="javascript:void(0);" data-id="{{$partner->id}}" class="btn btn-icon btn-sm btn-danger deleteDialog tip">
                           <i class="fa fa-trash"></i>
                         </a>

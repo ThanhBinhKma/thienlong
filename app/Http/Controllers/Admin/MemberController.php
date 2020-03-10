@@ -65,7 +65,7 @@ class MemberController extends Controller
         $member = Member::find($request->id);
         if ($member) {
             $data = [
-                'name_member' => $request->name_member,
+                'name' => $request->name_member,
                 'position' => $request->position,
                 'position_id' => $request->position_id,
                 'avatar' => $request->thumbnail,

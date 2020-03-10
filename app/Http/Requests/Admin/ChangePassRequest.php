@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateAccountRequest extends FormRequest
+class ChangePassRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,18 +24,17 @@ class CreateAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'account_name' => 'required',
             'password' => 'required',
-            'social' => 'required'
+            'passconf' => 'required|same:password'
         ];
     }
 
     public function messages()
     {
         return [
-            'account_name.required'=>'Tên đăng nhập không được để trống!',
-            'password.required'=>'Mật khẩu không được để trống!',
-            'social.required'=>'Vui lòng chọn mạng xã hội!',
+            'password.required' => 'Mật khẩu không được để trống!',
+            'passconf.required' => 'Mật khẩu không được để trống!',
+            'passconf.same' => 'Mật khẩu không khớp!',
         ];
     }
 }

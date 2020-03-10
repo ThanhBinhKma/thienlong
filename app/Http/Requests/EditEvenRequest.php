@@ -25,9 +25,6 @@ class EditEvenRequest extends FormRequest
     {
         return [
             'title'=>'required',
-            'date'=>'required',
-            'status'=>'required',
-            'place'=>'required',
             'content'=>'required',
   ,
         ];
@@ -35,9 +32,6 @@ class EditEvenRequest extends FormRequest
     public function messages() {
         return [
             'title.required'=>'Tiêu đề được để trống ',
-            'date.required'=>' Ngày không được để trống ',
-            'status.required'=>"trạng thái không được để trống ",
-            'place.required'=>"Địa điểm  không được để trống ",
             'content.required'=>"nội dung không được để trống ",
         ];
     }

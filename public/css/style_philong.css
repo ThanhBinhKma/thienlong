@@ -76,6 +76,8 @@ header .hd-ct{display:grid;grid-template-columns:10% 30% 60%}
 ._acntct{display:grid;grid-template-columns:50% 50%;margin-top: 20px;}
 ._frmct{overflow:hidden;margin:0 -10px}
 ._mapct iframe{width: 100%;}
+.page-item.active .page-link{background-color: #51585f;border-color: #2e3e4e;}
+.page-link{color:#51585f;}
 ._wrcnttct iframe{width:100%;height:100%}
 ._wrcnttct .inp-ct{width:50%;float:left;padding:10px}
 ._wrcnttct .inp-ct input{border:1px solid #ddd;width:100%;line-height:38px;border-radius:5px;padding:0 14px}

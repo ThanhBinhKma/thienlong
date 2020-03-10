@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="descrioption" content="Công ty Cổ phần Truyền thông Đa phương tiện Phi Long (Phi Long Multimedia., JSC) tiền thân là một ekip sáng tạo nội dung và tổ chức sự kiện từng kết hợp với nhiều đơn vị uy tín tại Việt Nam.">
+    <meta name="description" content="Công ty Cổ phần Truyền thông Đa phương tiện Phi Long (Phi Long Multimedia., JSC) tiền thân là một ekip sáng tạo nội dung và tổ chức sự kiện từng kết hợp với nhiều đơn vị uy tín tại Việt Nam.">
     <meta name=”robots” content=”noodp,index,follow” />
+    <meta property=”og:image” content=”http://www.philongmedia.com/images/logo-top.jpg” />
+    <meta property=”og:type” content=”{{asset('images/logo-top.jpg')}}” />
+    <meta property=”og:title” content=” Phi Long Media” />
+    <meta property=”og:url” content=”http://www.philongmedia.com/” />
+    <meta property=”og:site_name” content=” Phi Long Media “/>
+    <meta name="og:description" content="Công ty Cổ phần Truyền thông Đa phương tiện Phi Long (Phi Long Multimedia., JSC) tiền thân là một ekip sáng tạo nội dung và tổ chức sự kiện từng kết hợp với nhiều đơn vị uy tín tại Việt Nam.">
+    <meta property=”og:type” content=”blog” />
     <meta http-equiv=”content-language” content=”vi” />
     <meta name=”author” content=”philongmedia.com” />
     <meta name=”copyright” content=”copyright &copy; 2020 by philongmedia.com” />

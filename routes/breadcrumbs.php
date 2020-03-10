@@ -69,3 +69,9 @@ Breadcrumbs::for('addpartner', function ($trail) {
 // Home > Trang
 
 // Home > Trang > Sửa Trang
+
+
+Breadcrumbs::for('changepass', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Đổi mật khẩu');
+});

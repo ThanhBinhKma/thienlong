@@ -51,4 +51,10 @@ Route::group(['prefix' => 'system-admin', 'namespace' => 'Admin', 'middleware' =
     Route::delete('partner/destroyAll', 'PartnerController@destroyAll')->name('system_admin.partner.destroyAll');
     Route::post('partner/restory', 'PartnerController@restore')->name('system_admin.partner.restore');
 
+
+    //  
+
+    Route::get('change-pass', 'DashboardController@changePass')->name('system_admin.changepass');
+    Route::post('change-pass', 'DashboardController@handleChangePass')->name('system_admin.handle_changepass');
+    Route::get('log-out','DashboardController@logout')->name('system_admin.logout');
 });

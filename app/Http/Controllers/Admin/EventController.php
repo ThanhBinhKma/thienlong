@@ -72,7 +72,7 @@ class EventController extends Controller
                 'date' => $request->date,
                 'place' => $request->place,
                 'status' => $request->status,
-                'description ' => $request->description,
+                'description' => $request->description,
                 'content' => $request->content,
                 'slug' => str_slug($request->title, '-'),
                 'avatar' => $request->thumbnail

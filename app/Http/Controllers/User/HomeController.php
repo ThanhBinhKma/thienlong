@@ -16,19 +16,19 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $members = Member::select('name','avatar','position','position_id')->get();
-        $partners = Partner::select('avatar')->get();
-        $events = Event::select('avatar','title','description','slug')->get();
+        $members = Member::where('status',1)->select('name','avatar','position','position_id')->get();
+        $partners = Partner::where('status',1)->select('avatar','link')->get();
+        $events = Event::where('status',1)->select('avatar','title','description','slug')->get();
         return view('front_end.index',compact('members','partners','events'));
     }
 
     public function eventDetail($slug){
-        $event = Event::where('slug',$slug)->first();
+        $event = Event::where('status',1)->where('slug',$slug)->first();
         return view('front_end.event.detail',compact('event'));
     }
 
     public function listEvent(){
-        $events = Event::select('avatar','title','description','slug')->paginate(6);
+        $events = Event::where('status',1)->select('avatar','title','description','slug')->paginate(5);
         return view('front_end.event.show',compact('events'));
     }
     public function contact()
@@ -48,7 +48,7 @@ class HomeController extends Controller
 
     public function partner()
     {
-        $partners = Partner::all();
+        $partners = Partner::where('status',1)->get();
         return view('front_end.partner.index',compact('partners'));
     }
 

@@ -115,17 +115,17 @@
                     <h2>Đối tác chiến lược</h2>
                 </div>
 
-                <div class="_aprtnr">\
+                <div class="_aprtnr">
                     @if(count($partners) > 0)
                         @foreach($partners as $partner)
                             <div class="_itprtnr">
-                                <a href="#"><img src="{{$partner->avatar}}" alt=""></a>
+                                <a href="{{$partner->link}}"><img src="{{$partner->avatar}}" alt=""></a>
                             </div>
                         @endforeach
                     @endif
                 </div>
                 <div class="_xtprtnr">
-                    <a href="#">Xem thêm</a>
+                    <a href="{{route('partner')}}">Xem thêm</a>
                 </div>
             </div>
         </div>
