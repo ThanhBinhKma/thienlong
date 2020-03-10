@@ -5,7 +5,7 @@
     $request = request();
   @endphp
   <section class="content dataTables_wrapper">
-    {{ Breadcrumbs::render('member') }}
+    {{ Breadcrumbs::render('partner') }}
     <div class="clearfix"></div>
     @if (session('status_store'))
       <div class="note note-success"><p>{{ session('status_store') }}</p></div>
@@ -23,11 +23,6 @@
                     <input type="text" name="keyword" class="form-control" id="keyword" placeholder="Nhập từ khóa tìm kiếm : Tên tài khoản..." @if($request->has('keyword')) value="{{ $request->keyword}}" @endif>
                   </div>
                 </div>
-        
-
-              
-
-
                 <div class="col-md-5">
                   <div class="form-group">
                     <select name="status" class="form-control" id="status">
@@ -66,7 +61,7 @@
                 </ul>
               </div>
               <div class="btn-group pull-right" style="margin-right: 10px">
-                <a href="{{route('system_admin.member.create')}}" class="btn btn-sm btn-success" title="New">
+                <a href="{{route('system_admin.partner.create')}}" class="btn btn-sm btn-success" title="New">
                   <i class="fa fa-save"></i><span class="hidden-xs">&nbsp;&nbsp;Thêm mới</span>
                 </a>
               </div>
@@ -103,48 +98,35 @@
                   <th>
                     ID<a class="fa fa-fw fa-sort" href="#"></a>
                   </th>
-                  <th style="width: 150px;">Tên</th>
                   <th>Ảnh</th>
-                  <th>Vị trí</th>
-                  <th>Chức vụ</th>
+                  <th>Link</th>
                   <th>Trạng thái</th>
                   <th>Ngày tạo</th>
                   <th>Tác vụ</th>
                 </tr>
               </thead>
               <tbody>
-                @if (count($members) >0)
-                  @foreach($members as $member) 
+                @if (count($partners) >0)
+                  @foreach($partners as $partner)
                     <tr>
-                      <td><input type="checkbox" class="grid-row-checkbox" data-id="{{ $member->id }}" /></td>
+                      <td><input type="checkbox" class="grid-row-checkbox" data-id="{{ $partner->id }}" /></td>
                       <td>
-                        {{ $member->id }}
-                      </td>
-                      <td>
-                        <a class="text-left" href="" title="{{ $member->name }}" >{{ $member->name }}</a>
-
+                        {{ $partner->id }}
                       </td>
                       <td style="width: 100px;">
-                        <img src="{{$member->avatar}}" alt="" style="max-width: 100%">
+                        <img src="{{$partner->avatar}}" alt="" style="max-width: 100%">
                       </td>
                       <td>
-                        {{$member->position}}
+                        {{$partner->link}}
                       </td>
+                      <td> {!! \App\Helpers\Common::checkStatus($partner->status) !!} </td>
+                      <td> {{ \Carbon\Carbon::parse($partner->created_at)->format('d/m/Y H:i:s')}}</td>
                       <td>
-                        @if($member->position_id == 1)
-                          Giám đốc
-                        @elseif($member->position_id == 2)
-                        Nhân viên
-                        @endif
-                      </td>
-                      <td> {!! \App\Helpers\Common::checkStatus($member->status) !!} </td>
-                      <td> {{ \Carbon\Carbon::parse($member->created_at)->format('d/m/Y H:i:s')}}</td>
-                      <td>
-                         <a href="{{route('system_admin.member.edit',['id'=>$member->id])}}" class="btn btn-icon btn-sm btn-warning tip">
+                         <a href="{{route('system_admin.partner.edit',['id'=>$partner->id])}}" class="btn btn-icon btn-sm btn-warning tip">
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                         
-                        <a href="javascript:void(0);" data-id="{{$member->id}}" class="btn btn-icon btn-sm btn-danger deleteDialog tip">
+                        <a href="javascript:void(0);" data-id="{{$partner->id}}" class="btn btn-icon btn-sm btn-danger deleteDialog tip">
                           <i class="fa fa-trash"></i>
                         </a>
                       </td>
@@ -157,11 +139,11 @@
           </div>
           <div class="box-footer clearfix">
             <div class="col-md-5">
-              Hiển thị trang <b>{{ $members->currentPage() }}</b> / <b>{{ $members->lastPage() }}</b>
+              Hiển thị trang <b>{{ $partners->currentPage() }}</b> / <b>{{ $partners->lastPage() }}</b>
             </div>
             <div class="col-md-7"> 
               {{ 
-                $members->appends([
+                $partners->appends([
                   'keyword' => $request->query('keyword'),
                   'status' => $request->query('status'),
                 ])->links() 
@@ -179,14 +161,14 @@
     $(document).ready(function(){
       $('.deleteDialog').on('click', function() {
         var post_id = $(this).attr('data-id');
-        destroy( post_id , '{{ route('system_admin.member.destroy') }}' , '{{ route('system_admin.member.index') }}' , "Bạn muốn xóa bài đăng này!" );
+        destroy( post_id , '{{ route('system_admin.partner.destroy') }}' , '{{ route('system_admin.partner.index') }}' , "Bạn muốn xóa bài đăng này!" );
       }); 
     });
     $('.grid-batch-0').on('click', function() {
-      destroyAll( '{{ route('system_admin.member.destroyAll') }}' , '{{ route('system_admin.member.index') }}' , "Bạn muốn xóa các bài đăng đã chọn?" );
+      destroyAll( '{{ route('system_admin.partner.destroyAll') }}' , '{{ route('system_admin.partner.index') }}' , "Bạn muốn xóa các bài đăng đã chọn?" );
     });
     $('.grid-batch-1').on('click', function() {
-      restore( '{{ route('system_admin.member.restore') }}' , '{{ route('system_admin.member.index') }}' , "Bạn muốn phục hồi các bài đăng đã chọn?" );
+      restore( '{{ route('system_admin.partner.restore') }}' , '{{ route('system_admin.partner.index') }}' , "Bạn muốn phục hồi các bài đăng đã chọn?" );
     });
     $('.grid-refresh').click(function(){
       location.reload(true);

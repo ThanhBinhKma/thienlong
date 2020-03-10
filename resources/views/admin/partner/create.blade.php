@@ -2,9 +2,9 @@
 @section('title','Thêm trang mới')
 @section('content')
   <section class="content">
-     {{ Breadcrumbs::render('addevent') }}
+     {{ Breadcrumbs::render('addpartner') }}
     <div class="clearfix"></div>
-    <form method="POST" action="{{route('system_admin.event.store')}}">
+    <form method="POST" action="{{route('system_admin.partner.store')}}">
       {{ csrf_field() }}
 
       <div class="row">
@@ -18,46 +18,17 @@
             <div class="tab-content">
               <div class="tab-pane active show" id="tab_detail">
                 <div class="form-group">
-                  <label for="title" class="control-label required">Tiêu đề</label>
-                  <input class="form-control" placeholder="Nhập tiêu đề" data-counter="120" name="title" type="text" id="title" value="{{ old('title') }}">
+                  <label for="title" class="control-label required">Link</label>
+                  <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
+                         name="link" type="text" id="title" value="">
                   @if ($errors->first('title'))
                     <div class="error">{{ $errors->first('title') }}</div>
                   @endif
                 </div>
 
-                <div class="form-group">
-                  <label for="title" class="control-label required">Ngày</label>
-                  <input class="form-control" placeholder="Nhập ngày diễn ra sự kiện" data-counter="120"
-                         name="date" type="text" id="date" value="{{ old('title') }}"
-                         autocomplete="off">
-                  @if ($errors->first('date'))
-                    <div class="error">{{ $errors->first('date') }}</div>
-                  @endif
-                </div>
-
-                <div class="form-group">
-                  <label for="title" class="control-label required">Mô tả</label>
-                  <input class="form-control" placeholder="Nhập mô tả sự kiện" data-counter="120"
-                         name="description" type="text" value="{{ old('description') }}">
-                </div>
-
-                <div class="form-group">
-                  <label for="title" class="control-label required">Địa điểm</label>
-                  <input class="form-control" placeholder="Nhập địa điểm diễn ra sự kiện" data-counter="120" name="place" type="text" id="title" value="{{ old('place') }}">
-                  @if ($errors->first('place'))
-                    <div class="error">{{ $errors->first('place') }}</div>
-                  @endif
-                </div>
-
-                <div class="form-group box-body pad">
-                  <textarea class="high" rows="10" placeholder="Nội dung trang" data-counter="400" name="content" cols="50" id="content">{!! old('content') !!}</textarea>
-                  @if ($errors->first('content'))
-                    <div class="error">{{ $errors->first('content') }}</div>
-                  @endif
-                </div>
               </div>
-            </div><!-- end.tab-content -->
-          </div>
+            </div>
+          </div><!-- end.tab-content -->
         </div>
         <div class="col-md-3 right-sidebar">
           <div class="widget meta-boxes form-actions form-actions-default action-horizontal">
@@ -85,7 +56,7 @@
                   <option value="1" selected="selected">Đã kích hoạt</option>
                   <option value="0">Đã vô hiệu</option>
                 </select>
-                @if ($errors->first('status'))
+                @if ($errors->first('status')) 
                   <div class="error">{{ $errors->first('status') }}</div>
                 @endif
               </div>
@@ -109,7 +80,7 @@
                      <i class="fa fa-picture-o"></i> Chọn hình ảnh
                    </a>
                 </div>
-                @if ($errors->first('thumbnail'))
+                @if ($errors->first('thumbnail')) 
                   <div class="error">{{ $errors->first('thumbnail') }}</div>
                 @endif
               </div>
@@ -126,7 +97,7 @@
   <script type="text/javascript">
     $('#lfm').filemanager('image');
     $('#date').datepicker({
-        format: 'yyyy-mm',
+        format: 'yyyy-mm-dd',
     });
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
       checkboxClass: 'icheckbox_minimal-blue',

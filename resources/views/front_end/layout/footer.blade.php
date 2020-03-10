@@ -5,9 +5,7 @@
                 <div class="itlft">
                     <h3>Phi Long Multimedia</h3>
                     <ul>
-                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>Địa chỉ: Số 8C ngõ 184 đường âu Cơ,
-                            Phường Tứ Liên, Quận Tây Hồ, Hà Nội
-                        </li>
+                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>Địa chỉ: Số 8C ngõ 184 đường âu Cơ, Phường Tứ Liên, Quận Tây Hồ, Hà Nội</li>
                         <li><i class="fa fa-phone" aria-hidden="true"></i>Điện thoại: 0123654789 - 0125421452</li>
                         <li><i class="fa fa-envelope-o" aria-hidden="true"></i>Email: vietanhvietanh112@gmail.com</li>
                         <li><a href="#"><i class="fa fa-globe" aria-hidden="true"></i>https://philongmedia.com</a></li>
@@ -34,8 +32,7 @@
                 <div class="itlft">
                     <h3>Về chúng tôi</h3>
                     <p>Phi Long hoạt động với nhiều lĩnh vực gồm cung cấp các dịch vụ: <span class="_fbold">Truyền thông - Quảng cáo - Tổ chức sự kiện - Sản
-                            xuất phim</span> có quan hệ đối tác trực tiếp với các đơn vị, cá nhân, tổ chức hàng đầu Việt
-                        Nam.</p>
+                            xuất phim</span> có quan hệ đối tác trực tiếp với các đơn vị, cá nhân, tổ chức hàng đầu Việt Nam.</p>
                     <h3>Đăng ký nhận tin</h3>
                     <input type="text" placeholder="Nhập email đăng ký">
                     <button>đăng ký</button>

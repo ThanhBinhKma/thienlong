@@ -4,10 +4,17 @@ Auth::routes();
 
 Route::get('admin-login', 'Admin\LoginController@index')->name('admin.login');
 Route::post('admin-handle-login', 'Admin\LoginController@handleLogin')->name('admin.handle.login');
-Route::post('images-delete', 'User\HomeController@deleteImage')->name('images-delete');
-Route::post('images-save', 'User\HomeController@saveImage')->name('images-save');
 
-Route::get('/', 'User\HomeController@index')->name('home');
+
+Route::group(['namespace' =>'User'],function(){
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/contact','HomeController@contact')->name('contact');
+    Route::get('/about','HomeController@about')->name('about');
+    Route::get('/partner','HomeController@partner')->name('partner');
+    Route::get('/activate','HomeController@activate')->name('activate');
+    Route::get('/event/{slug}','HomeController@eventDetail')->name('detail-event');
+    Route::get('/event','HomeController@listEvent')->name('list-event');
+});
 
 Route::group(['prefix' => 'system-admin', 'namespace' => 'Admin', 'middleware' => 'adminLogin'], function () {
     Route::get('/', 'DashboardController@index')->name('system_admin.dashboard');
@@ -32,37 +39,22 @@ Route::group(['prefix' => 'system-admin', 'namespace' => 'Admin', 'middleware' =
     Route::delete('event/destroyAll', 'EventController@destroyAll')->name('system_admin.event.destroyAll');
     Route::post('event/restory', 'EventController@restore')->name('system_admin.event.restore');
 
-    //Media
-    Route::get('media', 'MediaController@index')->name('system_admin.media.index');
-    Route::get('create/media', 'MediaController@create')->name('system_admin.media.create');
-    Route::post('create/media', 'MediaController@store')->name('system_admin.media.store');
-    Route::get('edit/media/{id}', 'MediaController@edit')->name('system_admin.media.edit');
-    Route::put('edit/media/{id}', 'MediaController@update')->name('system_admin.media.update');
-    Route::delete('media/destroy', 'MediaController@destroy')->name('system_admin.media.destroy');
-    Route::delete('media/destroyAll', 'MediaController@destroyAll')->name('system_admin.media.destroyAll');
-    Route::post('media/restory', 'MediaController@restore')->name('system_admin.media.restore');
 
 
-    Route::post('upload-image', 'ImageController@fileStore')->name('system_admin.fileStore');
-    Route::post('delete-image', 'ImageController@fileDestroy')->name('system_admin.fileDestroy');
-    //Submedia
-    Route::get('sub-media', 'SubMediaController@index')->name('system_admin.submedia.index');
-    Route::get('create/sub-media', 'SubMediaController@create')->name('system_admin.submedia.create');
-    Route::post('create/sub-media', 'SubMediaController@store')->name('system_admin.submedia.store');
-    Route::get('edit/sub-media/{id}', 'SubMediaController@edit')->name('system_admin.submedia.edit');
-    Route::put('edit/sub-media/{id}', 'SubMediaController@update')->name('system_admin.submedia.update');
-    Route::delete('sub-media/destroy', 'SubMediaController@destroy')->name('system_admin.submedia.destroy');
-    Route::delete('sub-media/destroyAll', 'SubMediaController@destroyAll')->name('system_admin.submedia.destroyAll');
-    Route::post('sub-media/restory', 'SubMediaController@restore')->name('system_admin.submedia.restore');
+    //Partner
+    Route::get('partner', 'PartnerController@index')->name('system_admin.partner.index');
+    Route::get('create/partner', 'PartnerController@create')->name('system_admin.partner.create');
+    Route::post('create/partner', 'PartnerController@store')->name('system_admin.partner.store');
+    Route::get('edit/partner/{id}', 'PartnerController@edit')->name('system_admin.partner.edit');
+    Route::put('edit/partner/{id}', 'PartnerController@update')->name('system_admin.partner.update');
+    Route::delete('partner/destroy', 'PartnerController@destroy')->name('system_admin.partner.destroy');
+    Route::delete('partner/destroyAll', 'PartnerController@destroyAll')->name('system_admin.partner.destroyAll');
+    Route::post('partner/restory', 'PartnerController@restore')->name('system_admin.partner.restore');
 
-    //Produce
-    Route::get('produce', 'ProduceController@index')->name('system_admin.produce.index');
-    Route::get('create/produce', 'ProduceController@create')->name('system_admin.produce.create');
-    Route::post('create/produce', 'ProduceController@store')->name('system_admin.produce.store');
-    Route::get('edit/produce/{id}', 'ProduceController@edit')->name('system_admin.produce.edit');
-    Route::put('edit/produce/{id}', 'ProduceController@update')->name('system_admin.produce.update');
-    Route::delete('produce/destroy', 'ProduceController@destroy')->name('system_admin.produce.destroy');
-    Route::delete('produce/destroyAll', 'ProduceController@destroyAll')->name('system_admin.produce.destroyAll');
-    Route::post('produce/restory', 'ProduceController@restore')->name('system_admin.produce.restore');
 
+    //  
+
+    Route::get('change-pass', 'DashboardController@changePass')->name('system_admin.changepass');
+    Route::post('change-pass', 'DashboardController@handleChangePass')->name('system_admin.handle_changepass');
+    Route::get('log-out','DashboardController@logout')->name('system_admin.logout');
 });

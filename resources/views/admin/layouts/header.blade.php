@@ -233,7 +233,7 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-right">
-                <a href="" class="btn btn-default btn-flat">Đăng xuất</a>
+                <a href="{{route("system_admin.logout")}}" class="btn btn-default btn-flat">Đăng xuất</a>
               </div>
             </li>
           </ul>

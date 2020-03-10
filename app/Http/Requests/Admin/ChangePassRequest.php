@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateEventRequest extends FormRequest
+class ChangePassRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,17 @@ class CreateEventRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
-            'status'=>'required',
-            'content'=>'required',
+            'password' => 'required',
+            'passconf' => 'required|same:password'
         ];
     }
-    public function messages() {
+
+    public function messages()
+    {
         return [
-            'title.required'=>'Tiêu đề được để trống ',
-            'status.required'=>"trạng thái không được để trống ",
-            'content.required'=>"nội dung không được để trống ",
+            'password.required' => 'Mật khẩu không được để trống!',
+            'passconf.required' => 'Mật khẩu không được để trống!',
+            'passconf.same' => 'Mật khẩu không khớp!',
         ];
     }
 }

@@ -2,7 +2,7 @@
 @section('title','Chỉnh sửa trang')
 @section('content')
   <section class="content">
-
+    {{ Breadcrumbs::render('editmember') }}
     <div class="clearfix"></div>
     <form method="POST" action="{{route('system_admin.member.update',['id'=>$member->id])}}">
        @method('PUT')

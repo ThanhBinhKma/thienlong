@@ -18,7 +18,7 @@ class MemberController extends Controller
         $status = $request->status;
 
         try {
-            $conditions = Member::select('members.id', 'members.name', 'members.position', 'members.avatar', 'members.status', 'members.created_at');
+            $conditions = Member::select('members.id', 'members.name', 'members.position', 'members.position_id', 'members.avatar', 'members.status', 'members.created_at');
             if (isset($status)) {
                 $conditions = $conditions->where('members.status', '=', $status);
             }
@@ -65,7 +65,7 @@ class MemberController extends Controller
         $member = Member::find($request->id);
         if ($member) {
             $data = [
-                'name_member' => $request->name_member,
+                'name' => $request->name_member,
                 'position' => $request->position,
                 'position_id' => $request->position_id,
                 'avatar' => $request->thumbnail,

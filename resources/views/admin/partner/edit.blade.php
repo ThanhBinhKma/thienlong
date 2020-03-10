@@ -2,9 +2,9 @@
 @section('title','Chỉnh sửa trang')
 @section('content')
     <section class="content">
-        {{ Breadcrumbs::render('editevent') }}
+        {{ Breadcrumbs::render('editpartner') }}
         <div class="clearfix"></div>
-        <form method="POST" action="{{route('system_admin.event.update',['id'=>$event->id])}}">
+        <form method="POST" action="{{route('system_admin.partner.update',['id'=>$partner->id])}}">
             @method('PUT')
             {{ csrf_field() }}
             @if ($errors->all())
@@ -23,47 +23,14 @@
                         <div class="tab-content">
                             <div class="tab-pane active show" id="tab_detail">
                                 <div class="form-group">
-                                    <label for="title" class="control-label required">Tiêu đề</label>
-                                    <input class="form-control" placeholder="Nhập tiêu đề" data-counter="120"
-                                           name="title" type="text" id="title" value="{{ $event->title}}">
+                                    <label for="title" class="control-label required">Link</label>
+                                    <input class="form-control" placeholder="Nhập tên trang" data-counter="120"
+                                           name="link" type="text" id="title" value="{{ $partner->link}}">
                                     @if ($errors->first('title'))
                                         <div class="error">{{ $errors->first('title') }}</div>
                                     @endif
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="title" class="control-label required">Ngày</label>
-                                    <input class="form-control" placeholder="Nhập ngày diễn ra sự kiện" data-counter="120"
-                                           name="date" type="text" id="date" value="{{ $event->date }}"
-                                           autocomplete="off">
-                                    @if ($errors->first('date'))
-                                        <div class="error">{{ $errors->first('date') }}</div>
-                                    @endif
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="title" class="control-label required">Mô tả</label>
-                                    <input class="form-control" placeholder="Nhập mô tả sự kiện" data-counter="120"
-                                           name="description" type="text" value="{{ $event->description }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="title" class="control-label required">Địa điểm</label>
-                                    <input class="form-control" placeholder="Nhập địa điểm diễn ra sự kiện" data-counter="120"
-                                           name="place" type="text" id="date" value="{{ $event->date }}">
-                                    @if ($errors->first('date'))
-                                        <div class="error">{{ $errors->first('date') }}</div>
-                                    @endif
-                                </div>
-
-                                <div class="form-group box-body pad">
-                                    <textarea class="high" rows="10" placeholder="Nội dung trang" data-counter="400"
-                                              name="content" cols="50"
-                                              id="content">{!! $event->content !!}</textarea>
-                                    @if ($errors->first('content'))
-                                        <div class="error">{{ $errors->first('content') }}</div>
-                                    @endif
-                                </div>
                             </div>
                         </div>
                     </div><!-- end.tab-content -->
@@ -91,8 +58,8 @@
                         <div class="widget-body">
                             <div class="ui-select-wrapper">
                                 <select class="form-control ui-select ui-select" id="status" name="status">
-                                    <option value="1" {{$event->status == 1 ? 'selected' : ''}}>Đã kích hoạt</option>
-                                    <option value="0" {{$event->status == 0 ? 'selected' : ''}}>Đã vô hiệu</option>
+                                    <option value="1" {{$partner->status == 1 ? 'selected' : ''}}>Đã kích hoạt</option>
+                                    <option value="0" {{$partner->status == 0 ? 'selected' : ''}}>Đã vô hiệu</option>
                                 </select>
                                 @if ($errors->first('status'))
                                     <div class="error">{{ $errors->first('status') }}</div>
@@ -105,11 +72,11 @@
                             </div>
                             <div class="widget-body">
                                 <div class="image-box">
-                                    @if ($event->avatar)
-                                        <input id="thumbnail" type="hidden" name="thumbnail" value="{{$event->avatar }}"
+                                    @if ($partner->avatar)
+                                        <input id="thumbnail" type="hidden" name="thumbnail" value="{{$partner->avatar }}"
                                                class="image-data">
                                         <div class="preview-image-wrapper ">
-                                            <img id="holder" class="preview_image" src="{{ $event->avatar }}"
+                                            <img id="holder" class="preview_image" src="{{ $partner->avatar }}"
                                                  type="text" name="filepath" alt="preview image">
                                             <a class="btn_remove_image" title="Xoá ảnh">
                                                 <i class="fa fa-times"></i>
@@ -151,10 +118,14 @@
         $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass: 'iradio_minimal-blue'
-        });
-        $('#date').datepicker({
-            format: 'yyyy-mm',
-        });
+        })
         $('#lfm').filemanager('image');
+        @if(session('status_update'))
+swal(
+            'Thành công!',
+            'Chỉnh sửa trang thành công!',
+            'success'
+        )
+        @endif
     </script>
 @stop

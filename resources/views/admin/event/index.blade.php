@@ -100,6 +100,7 @@
                   </th>
                   <th style="width: 150px;">Tiêu đề</th>
                   <th>Ảnh</th>
+                  <th>Mô tả</th>
                   <th>Ngày</th>
                   <th>Trạng thái</th>
                   <th>Ngày tạo</th>
@@ -121,6 +122,7 @@
                       <td style="width: 100px;">
                         <img src="{{$event->avatar}}" alt="" style="max-width: 100%">
                       </td>
+                      <td>{{$event->description}}</td>
                       <td>
                         {{$event->date}}
                       </td>
@@ -130,9 +132,7 @@
                          <a href="{{route('system_admin.event.edit',['id'=>$event->id])}}" class="btn btn-icon btn-sm btn-warning tip">
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
-                        <a href="http://darianculbert.com/blog/32/le-hoi-nguoi-cham" class="btn btn-icon btn-sm btn-primary tip">
-                          <i class="fa fa-eye"></i>
-                        </a>
+                       
                         <a href="javascript:void(0);" data-id="{{$event->id}}" class="btn btn-icon btn-sm btn-danger deleteDialog tip">
                           <i class="fa fa-trash"></i>
                         </a>
